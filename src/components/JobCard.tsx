@@ -38,73 +38,73 @@ const JobCard: React.FC<JobCardProps> = ({
   };
 
   return (
-    <Card className="group cursor-pointer hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-0 bg-white overflow-hidden">
-      <CardHeader className="pb-4">
-        <div className="flex items-start justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-[#D32F2F] to-[#FF5722] rounded-xl flex items-center justify-center">
-              <GraduationCap className="text-white" size={24} />
+    <Card className="group cursor-pointer hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-0 bg-white overflow-hidden h-full flex flex-col">
+      <CardHeader className="pb-3 sm:pb-4 flex-shrink-0">
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex items-center space-x-2 sm:space-x-3 flex-1 min-w-0">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#D32F2F] to-[#FF5722] rounded-xl flex items-center justify-center flex-shrink-0">
+              <GraduationCap className="text-white" size={20} />
             </div>
-            <div>
-              <h3 className="text-xl font-bold text-gray-800 group-hover:text-[#D32F2F] transition-colors duration-300">
+            <div className="min-w-0 flex-1">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-800 group-hover:text-[#D32F2F] transition-colors duration-300 line-clamp-2">
                 {title}
               </h3>
-              <p className="text-gray-600 font-medium">{school}</p>
+              <p className="text-gray-600 font-medium text-sm sm:text-base truncate">{school}</p>
             </div>
           </div>
           
           <button
             onClick={handleLike}
-            className={`p-2 rounded-full transition-all duration-300 ${
+            className={`p-2 rounded-full transition-all duration-300 flex-shrink-0 ${
               isLiked 
                 ? 'bg-[#D32F2F] text-white shadow-lg' 
                 : 'bg-gray-100 text-gray-400 hover:bg-[#FCE4EC] hover:text-[#D32F2F]'
             }`}
           >
-            <Heart size={18} fill={isLiked ? 'currentColor' : 'none'} />
+            <Heart size={16} fill={isLiked ? 'currentColor' : 'none'} />
           </button>
         </div>
       </CardHeader>
       
-      <CardContent className="space-y-4">
-        <div className="flex items-center justify-between text-sm text-gray-600">
+      <CardContent className="space-y-3 sm:space-y-4 flex-1 flex flex-col">
+        <div className="flex items-center justify-between text-xs sm:text-sm text-gray-600">
           <div className="flex items-center space-x-1">
-            <MapPin size={16} className="text-[#D32F2F]" />
-            <span>{location}</span>
+            <MapPin size={14} className="text-[#D32F2F] flex-shrink-0" />
+            <span className="truncate">{location}</span>
           </div>
-          <div className="flex items-center space-x-1">
-            <Clock size={16} className="text-[#D32F2F]" />
+          <div className="flex items-center space-x-1 flex-shrink-0">
+            <Clock size={14} className="text-[#D32F2F]" />
             <span>{timePosted}</span>
           </div>
         </div>
 
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <Badge variant="secondary" className="bg-[#FCE4EC] text-[#D32F2F] hover:bg-[#F8BBD9]">
+        <div className="space-y-2 sm:space-y-3 flex-1">
+          <div className="flex items-center justify-between gap-2">
+            <Badge variant="secondary" className="bg-[#FCE4EC] text-[#D32F2F] hover:bg-[#F8BBD9] text-xs">
               {category}
             </Badge>
-            <Badge variant="outline" className="border-[#D32F2F] text-[#D32F2F]">
+            <Badge variant="outline" className="border-[#D32F2F] text-[#D32F2F] text-xs">
               {board}
             </Badge>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 text-sm">
+          <div className="grid grid-cols-1 gap-2 sm:gap-3 text-xs sm:text-sm">
             <div className="flex items-center space-x-2">
-              <Briefcase size={16} className="text-[#D32F2F]" />
-              <span className="text-gray-600">{experience}</span>
+              <Briefcase size={14} className="text-[#D32F2F] flex-shrink-0" />
+              <span className="text-gray-600 truncate">{experience}</span>
             </div>
             <div className="flex items-center space-x-2">
-              <IndianRupee size={16} className="text-[#D32F2F]" />
-              <span className="text-gray-600 font-medium">{salary}</span>
+              <IndianRupee size={14} className="text-[#D32F2F] flex-shrink-0" />
+              <span className="text-gray-600 font-medium text-xs sm:text-sm">{salary}</span>
             </div>
           </div>
 
           <div className="space-y-2">
             <div className="flex items-center space-x-2">
-              <BookOpen size={16} className="text-[#D32F2F]" />
-              <span className="text-sm font-medium text-gray-700">Subjects:</span>
+              <BookOpen size={14} className="text-[#D32F2F] flex-shrink-0" />
+              <span className="text-xs sm:text-sm font-medium text-gray-700">Subjects:</span>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1 sm:gap-2">
               {subjects.map((subject, index) => (
                 <Badge 
                   key={index} 
@@ -118,16 +118,16 @@ const JobCard: React.FC<JobCardProps> = ({
           </div>
         </div>
 
-        <div className="pt-4 border-t border-gray-100">
-          <div className="flex space-x-3">
+        <div className="pt-3 sm:pt-4 border-t border-gray-100 mt-auto">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
             <Button 
-              className="flex-1 bg-[#D32F2F] hover:bg-[#B71C1C] transition-all duration-300 transform hover:scale-105"
+              className="flex-1 bg-[#D32F2F] hover:bg-[#B71C1C] transition-all duration-300 transform hover:scale-105 text-sm sm:text-base py-2 sm:py-2.5"
             >
               Apply Now
             </Button>
             <Button 
               variant="outline" 
-              className="px-6 border-[#D32F2F] text-[#D32F2F] hover:bg-[#D32F2F] hover:text-white transition-all duration-300"
+              className="sm:px-6 border-[#D32F2F] text-[#D32F2F] hover:bg-[#D32F2F] hover:text-white transition-all duration-300 text-sm sm:text-base py-2 sm:py-2.5"
             >
               Details
             </Button>
