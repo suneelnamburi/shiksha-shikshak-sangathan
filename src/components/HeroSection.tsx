@@ -23,7 +23,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   ];
 
   return (
-    <section id="home" className="relative min-h-screen bg-gradient-to-br from-slate-100 to-blue-50 overflow-hidden">
+    <section id="home" className="relative min-h-screen bg-[#1A252F] overflow-hidden">
       {/* Main Content Container */}
       <div className="container mx-auto px-4 relative flex items-center min-h-screen">
         <div className="max-w-4xl mx-auto text-center w-full">
@@ -33,12 +33,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             
             {/* Header Content */}
             <div className="space-y-8">
-              <p className="text-gray-700 text-lg flex items-center justify-center font-medium">
-                <TrendingUp className="mr-2 text-gray-700" size={20} />
+              <p className="text-white/90 text-lg flex items-center justify-center font-medium">
+                <TrendingUp className="mr-2 text-white" size={20} />
                 Find Jobs, Employment & Career Opportunities
               </p>
               
-              <h1 className="text-4xl lg:text-6xl font-bold leading-tight text-gray-900">
+              <h1 className="text-4xl lg:text-6xl font-bold leading-tight text-white">
                 Drop Resume & Get
                 <span className="block mt-2">Your Desire Job!</span>
               </h1>
@@ -88,7 +88,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
             {/* Trending Keywords */}
             <div className="space-y-4">
-              <p className="text-gray-600 text-sm">
+              <p className="text-white/80 text-sm">
                 Trending Keywords: Automotive, Education, Health and Care Engineering
               </p>
             </div>
@@ -96,7 +96,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
       </div>
 
-      {/* Bottom Wave Shape */}
+      {/* Semi-circular White Cutout at Bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-white z-30" 
            style={{
              clipPath: 'ellipse(100% 100% at 50% 100%)'
