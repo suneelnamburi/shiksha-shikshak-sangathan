@@ -1,10 +1,10 @@
-
 import React, { useState } from 'react';
 import { Search, BookOpen, Users, Award, MapPin, Clock, Heart, Filter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Link } from 'react-router-dom';
 import CategoryCard from '@/components/CategoryCard';
 import JobCard from '@/components/JobCard';
 import HeroSection from '@/components/HeroSection';
@@ -104,12 +104,12 @@ const Index = () => {
       <header className="bg-[#1A252F]/80 backdrop-blur-sm text-white sticky top-0 z-50 shadow-lg">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2">
               <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
                 <span className="text-[#1A252F] font-bold text-lg">@</span>
               </div>
               <span className="text-2xl font-bold">शिक्षक Portal</span>
-            </div>
+            </Link>
             
             <nav className="hidden lg:flex items-center space-x-8">
               <a href="#home" className="hover:text-gray-300 transition-colors">Home</a>
@@ -121,12 +121,16 @@ const Index = () => {
             </nav>
             
             <div className="flex items-center space-x-4">
-              <Button variant="outline" className="border-[#D32F2F] text-[#D32F2F] hover:bg-[#D32F2F] hover:text-white transition-all duration-300">
-                Sign In
-              </Button>
-              <Button className="bg-[#D32F2F] hover:bg-[#B71C1C] transition-all duration-300 transform hover:scale-105">
-                Sign Up
-              </Button>
+              <Link to="/signin">
+                <Button variant="outline" className="border-[#D32F2F] text-[#D32F2F] hover:bg-[#D32F2F] hover:text-white transition-all duration-300">
+                  Sign In
+                </Button>
+              </Link>
+              <Link to="/signup">
+                <Button className="bg-[#D32F2F] hover:bg-[#B71C1C] transition-all duration-300 transform hover:scale-105">
+                  Sign Up
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -180,10 +184,10 @@ const Index = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <Select>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
                     <SelectValue placeholder="Subject" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
                     <SelectItem value="mathematics">Mathematics</SelectItem>
                     <SelectItem value="english">English</SelectItem>
                     <SelectItem value="science">Science</SelectItem>
@@ -194,10 +198,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
                     <SelectValue placeholder="Board Type" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
                     <SelectItem value="cbse">CBSE</SelectItem>
                     <SelectItem value="icse">ICSE</SelectItem>
                     <SelectItem value="state">State Board</SelectItem>
@@ -207,10 +211,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
                     <SelectValue placeholder="Experience" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
                     <SelectItem value="0-1">0-1 years</SelectItem>
                     <SelectItem value="1-3">1-3 years</SelectItem>
                     <SelectItem value="3-5">3-5 years</SelectItem>
@@ -220,10 +224,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
                     <SelectValue placeholder="Language" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
                     <SelectItem value="english">English</SelectItem>
                     <SelectItem value="hindi">Hindi</SelectItem>
                     <SelectItem value="tamil">Tamil</SelectItem>
@@ -249,12 +253,16 @@ const Index = () => {
             <h2 className="text-4xl font-bold text-white mb-4">Start Your Teaching Journey Today</h2>
             <p className="text-gray-300 text-xl mb-8">Join thousands of educators finding their dream jobs</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-[#D32F2F] hover:bg-[#B71C1C] text-white px-8 py-3 text-lg transition-all duration-300 transform hover:scale-105">
-                Register as Teacher
-              </Button>
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-[#1A252F] px-8 py-3 text-lg transition-all duration-300">
-                Browse All Jobs
-              </Button>
+              <Link to="/signup">
+                <Button className="bg-[#D32F2F] hover:bg-[#B71C1C] text-white px-8 py-3 text-lg transition-all duration-300 transform hover:scale-105">
+                  Register as Teacher
+                </Button>
+              </Link>
+              <a href="#jobs">
+                <Button variant="outline" className="border-white text-white hover:bg-white hover:text-[#1A252F] px-8 py-3 text-lg transition-all duration-300">
+                  Browse All Jobs
+                </Button>
+              </a>
             </div>
           </div>
           
