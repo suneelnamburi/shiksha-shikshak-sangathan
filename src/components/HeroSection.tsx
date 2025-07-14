@@ -31,12 +31,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       </div>
       
       <div className="container mx-auto px-4 py-20 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-4xl mx-auto text-center">
           
-          {/* Left Content */}
+          {/* Main Content */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <p className="text-gray-300 text-lg flex items-center">
+              <p className="text-gray-300 text-lg flex items-center justify-center">
                 <TrendingUp className="mr-2 text-[#D32F2F]" size={20} />
                 Find Teaching Jobs, Career & Opportunities
               </p>
@@ -46,13 +46,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 <span className="block text-[#D32F2F]">Teaching Job!</span>
               </h1>
               
-              <p className="text-xl text-gray-300 leading-relaxed">
+              <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
                 Connect with top schools across India. Upload your resume and get noticed by education recruiters.
               </p>
             </div>
 
             {/* Search Bar */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 max-w-3xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
@@ -85,7 +85,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             {/* Trending Keywords */}
             <div className="space-y-3">
               <p className="text-sm text-gray-300">Trending Keywords:</p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 justify-center">
                 {trendingKeywords.map((keyword, index) => (
                   <button
                     key={index}
@@ -95,46 +95,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                     {keyword}
                   </button>
                 ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Right Content - Stats Section */}
-          <div className="relative">
-            <div className="bg-gradient-to-br from-white/10 to-white/5 rounded-3xl p-8 backdrop-blur-sm border border-white/20">
-              <div className="text-center space-y-6">
-                <div className="w-24 h-24 bg-[#D32F2F] rounded-full mx-auto flex items-center justify-center">
-                  <div className="text-4xl">👩‍🏫</div>
-                </div>
-                
-                <div className="space-y-4">
-                  <h3 className="text-2xl font-bold">Join 50,000+ Teachers</h3>
-                  <p className="text-gray-300">
-                    Already finding their perfect teaching positions through our platform
-                  </p>
-                  
-                  <div className="grid grid-cols-2 gap-4 text-center">
-                    <div className="bg-white/10 rounded-xl p-4">
-                      <div className="text-2xl font-bold text-[#D32F2F]">2000+</div>
-                      <div className="text-sm text-gray-300">Active Jobs</div>
-                    </div>
-                    <div className="bg-white/10 rounded-xl p-4">
-                      <div className="text-2xl font-bold text-[#D32F2F]">500+</div>
-                      <div className="text-sm text-gray-300">Schools</div>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4 text-center">
-                    <div className="bg-white/10 rounded-xl p-4">
-                      <div className="text-2xl font-bold text-[#D32F2F]">50K+</div>
-                      <div className="text-sm text-gray-300">Teachers</div>
-                    </div>
-                    <div className="bg-white/10 rounded-xl p-4">
-                      <div className="text-2xl font-bold text-[#D32F2F]">95%</div>
-                      <div className="text-sm text-gray-300">Success Rate</div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
