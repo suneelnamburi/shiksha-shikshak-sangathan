@@ -23,7 +23,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   ];
 
   return (
-    <section id="home" className="relative bg-[#1A252F] overflow-hidden min-h-[70vh] sm:min-h-[80vh] lg:min-h-[85vh]">
+    <section id="home" className="relative bg-[#1A252F] overflow-hidden">
       {/* Background Image with Overlay */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -35,31 +35,31 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         <div className="absolute inset-0 bg-[#1A252F]/70"></div>
       </div>
 
-      {/* Main Content Container */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative flex items-center py-12 sm:py-16 lg:py-20 z-10">
-        <div className="max-w-5xl mx-auto text-center w-full">
+      {/* Main Content Container - Reduced height */}
+      <div className="container mx-auto px-4 relative flex items-center py-16 z-10">
+        <div className="max-w-4xl mx-auto text-center w-full">
           
-          {/* Content Section */}
-          <div className="space-y-6 sm:space-y-8 lg:space-y-10">
+          {/* Content Section - Reduced spacing */}
+          <div className="space-y-8">
             
             {/* Header Content */}
-            <div className="space-y-4 sm:space-y-6">
-              <p className="text-white/90 text-sm sm:text-base lg:text-lg flex items-center justify-center font-medium flex-wrap gap-2">
-                <TrendingUp className="text-white flex-shrink-0" size={16} />
-                <span className="text-center">Find Jobs, Employment & Career Opportunities</span>
+            <div className="space-y-6">
+              <p className="text-white/90 text-lg flex items-center justify-center font-medium">
+                <TrendingUp className="mr-2 text-white" size={20} />
+                Find Jobs, Employment & Career Opportunities
               </p>
               
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-white px-2">
+              <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-white">
                 Step into the Teacher Job Portal,
                 <span className="block mt-2">where passion fuels purpose!</span>
               </h1>
             </div>
 
             {/* Search Bar Section */}
-            <div className="bg-card/98 backdrop-blur-sm rounded-xl lg:rounded-2xl p-4 sm:p-6 shadow-2xl max-w-5xl mx-auto border-2 border-border">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-6 items-end">
-                <div className="sm:col-span-1 lg:col-span-5">
-                  <label className="block text-sm font-medium text-foreground mb-2 sm:mb-3">
+            <div className="bg-card/98 backdrop-blur-sm rounded-2xl p-6 shadow-2xl max-w-4xl mx-auto border-2 border-border">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
+                <div className="md:col-span-5">
+                  <label className="block text-sm font-medium text-foreground mb-3">
                     Keyword:
                   </label>
                   <div className="relative">
@@ -68,13 +68,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                       placeholder="Job Title"
                       value={searchKeyword}
                       onChange={(e) => setSearchKeyword(e.target.value)}
-                      className="h-10 sm:h-12 text-foreground border-2 border-border focus:border-primary focus:ring-primary text-sm sm:text-base"
+                      className="h-12 text-foreground border-2 border-border focus:border-primary focus:ring-primary"
                     />
                   </div>
                 </div>
                 
-                <div className="sm:col-span-1 lg:col-span-5">
-                  <label className="block text-sm font-medium text-foreground mb-2 sm:mb-3">
+                <div className="md:col-span-5">
+                  <label className="block text-sm font-medium text-foreground mb-3">
                     Location:
                   </label>
                   <div className="relative">
@@ -83,24 +83,23 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                       placeholder="City or State"
                       value={searchLocation}
                       onChange={(e) => setSearchLocation(e.target.value)}
-                      className="h-10 sm:h-12 text-foreground border-2 border-border focus:border-primary focus:ring-primary text-sm sm:text-base"
+                      className="h-12 text-foreground border-2 border-border focus:border-primary focus:ring-primary"
                     />
                   </div>
                 </div>
                 
-                <div className="sm:col-span-2 lg:col-span-2">
-                  <Button className="w-full bg-primary hover:bg-primary/90 h-10 sm:h-12 text-primary-foreground font-semibold rounded-lg transition-all duration-300 border-2 border-primary text-sm sm:text-base">
-                    <Search className="mr-2 flex-shrink-0" size={16} />
-                    <span className="hidden sm:inline">FIND A JOB</span>
-                    <span className="sm:hidden">SEARCH</span>
+                <div className="md:col-span-2">
+                  <Button className="w-full bg-primary hover:bg-primary/90 h-12 text-primary-foreground font-semibold rounded-lg transition-all duration-300 border-2 border-primary">
+                    <Search className="mr-2" size={18} />
+                    FIND A JOB
                   </Button>
                 </div>
               </div>
             </div>
 
             {/* Trending Keywords */}
-            <div className="space-y-3 sm:space-y-4 px-4">
-              <p className="text-white/80 text-xs sm:text-sm text-center">
+            <div className="space-y-4">
+              <p className="text-white/80 text-sm">
                 Trending Keywords: Automotive, Education, Health and Care Engineering
               </p>
             </div>
@@ -109,7 +108,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       </div>
 
       {/* Semi-circular White Cutout at Bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-8 sm:h-12 lg:h-16 bg-background z-30 border-t-2 border-border" 
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-background z-30 border-t-2 border-border" 
            style={{
              clipPath: 'ellipse(100% 100% at 50% 100%)'
            }}>
