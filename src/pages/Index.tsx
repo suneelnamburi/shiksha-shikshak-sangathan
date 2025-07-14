@@ -1,17 +1,16 @@
+
 import React, { useState } from 'react';
-import { Search, BookOpen, Users, Award, MapPin, Clock, Heart, Filter, Menu, X } from 'lucide-react';
+import { Search, BookOpen, Users, Award, MapPin, Clock, Heart, Filter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import Sidebar from '@/components/Sidebar';
 import CategoryCard from '@/components/CategoryCard';
 import JobCard from '@/components/JobCard';
 import HeroSection from '@/components/HeroSection';
 import TeacherGallery from '@/components/TeacherGallery';
 
 const Index = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState('');
   const [searchLocation, setSearchLocation] = useState('');
 
@@ -105,19 +104,11 @@ const Index = () => {
       <header className="bg-[#1A252F] text-white sticky top-0 z-50 shadow-lg">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="lg:hidden p-2 hover:bg-white/10 rounded-lg transition-colors"
-              >
-                {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-              <div className="flex items-center space-x-2">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-[#1A252F] font-bold text-lg">@</span>
-                </div>
-                <span className="text-2xl font-bold">शिक्षक Portal</span>
+            <div className="flex items-center space-x-2">
+              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                <span className="text-[#1A252F] font-bold text-lg">@</span>
               </div>
+              <span className="text-2xl font-bold">शिक्षक Portal</span>
             </div>
             
             <nav className="hidden lg:flex items-center space-x-8">
@@ -141,16 +132,8 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Mobile Sidebar Overlay */}
-      {sidebarOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden" onClick={() => setSidebarOpen(false)} />
-      )}
-
-      {/* Sidebar */}
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-
       {/* Main Content */}
-      <main className={`transition-all duration-300 ${sidebarOpen ? 'lg:ml-64' : ''}`}>
+      <main>
         {/* Hero Section */}
         <HeroSection 
           searchKeyword={searchKeyword}
