@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import { Search, BookOpen, Users, Award, MapPin, Clock, Heart, Filter, Menu } from 'lucide-react';
+import { Search, BookOpen, Users, Award, MapPin, Clock, Heart, Filter } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -9,12 +10,10 @@ import CategoryCard from '@/components/CategoryCard';
 import JobCard from '@/components/JobCard';
 import HeroSection from '@/components/HeroSection';
 import TeacherGallery from '@/components/TeacherGallery';
-import Sidebar from '@/components/Sidebar';
 
 const Index = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
   const [searchLocation, setSearchLocation] = useState('');
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const categories = [
     { icon: BookOpen, name: 'Mathematics', positions: 450, color: '#D32F2F' },
@@ -113,7 +112,7 @@ const Index = () => {
               <span className="text-xl sm:text-2xl font-bold">शिक्षक Portal</span>
             </Link>
             
-            <nav className="hidden xl:flex items-center space-x-6 lg:space-x-8">
+            <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
               <a href="#home" className="hover:text-gray-300 transition-colors text-sm lg:text-base">Home</a>
               <a href="#about" className="hover:text-gray-300 transition-colors text-sm lg:text-base">About</a>
               <a href="#jobs" className="hover:text-gray-300 transition-colors text-sm lg:text-base">Jobs</a>
@@ -123,33 +122,20 @@ const Index = () => {
             </nav>
             
             <div className="flex items-center space-x-2 sm:space-x-4">
-              <div className="hidden sm:flex items-center space-x-2 sm:space-x-4">
-                <Link to="/signin">
-                  <Button variant="outline" className="border-[#D32F2F] text-[#D32F2F] hover:bg-[#D32F2F] hover:text-white transition-all duration-300 text-xs sm:text-sm px-3 sm:px-4 py-2">
-                    Sign In
-                  </Button>
-                </Link>
-                <Link to="/signup">
-                  <Button className="bg-[#D32F2F] hover:bg-[#B71C1C] transition-all duration-300 transform hover:scale-105 text-xs sm:text-sm px-3 sm:px-4 py-2">
-                    Sign Up
-                  </Button>
-                </Link>
-              </div>
-              
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setSidebarOpen(true)}
-                className="xl:hidden p-2 hover:bg-white/10 rounded-lg transition-colors"
-              >
-                <Menu size={20} />
-              </button>
+              <Link to="/signin">
+                <Button variant="outline" className="border-[#D32F2F] text-[#D32F2F] hover:bg-[#D32F2F] hover:text-white transition-all duration-300 text-xs sm:text-sm px-3 sm:px-4 py-2">
+                  Sign In
+                </Button>
+              </Link>
+              <Link to="/signup">
+                <Button className="bg-[#D32F2F] hover:bg-[#B71C1C] transition-all duration-300 transform hover:scale-105 text-xs sm:text-sm px-3 sm:px-4 py-2">
+                  Sign Up
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
       </header>
-
-      {/* Mobile Sidebar */}
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       {/* Main Content */}
       <main>
