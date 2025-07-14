@@ -24,8 +24,19 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
   return (
     <section id="home" className="relative bg-[#1A252F] overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: 'url(/lovable-uploads/e2ce2150-6ea2-447a-948f-bd62a06f3287.png)'
+        }}
+      >
+        {/* Dark overlay for better text visibility */}
+        <div className="absolute inset-0 bg-[#1A252F]/70"></div>
+      </div>
+
       {/* Main Content Container - Reduced height */}
-      <div className="container mx-auto px-4 relative flex items-center py-16">
+      <div className="container mx-auto px-4 relative flex items-center py-16 z-10">
         <div className="max-w-4xl mx-auto text-center w-full">
           
           {/* Content Section - Reduced spacing */}
@@ -45,7 +56,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
 
             {/* Search Bar Section */}
-            <div className="bg-white rounded-2xl p-6 shadow-2xl max-w-4xl mx-auto">
+            <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-2xl max-w-4xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
                 <div className="md:col-span-5">
                   <label className="block text-sm font-medium text-gray-700 mb-3">
