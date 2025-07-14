@@ -56,10 +56,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
 
             {/* Search Bar Section */}
-            <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-2xl max-w-4xl mx-auto">
+            <div className="bg-card/98 backdrop-blur-sm rounded-2xl p-6 shadow-2xl max-w-4xl mx-auto border-2 border-border">
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
                 <div className="md:col-span-5">
-                  <label className="block text-sm font-medium text-gray-700 mb-3">
+                  <label className="block text-sm font-medium text-foreground mb-3">
                     Keyword:
                   </label>
                   <div className="relative">
@@ -68,13 +68,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                       placeholder="Job Title"
                       value={searchKeyword}
                       onChange={(e) => setSearchKeyword(e.target.value)}
-                      className="h-12 text-gray-800 border-gray-200 focus:border-red-500 focus:ring-red-500"
+                      className="h-12 text-foreground border-2 border-border focus:border-primary focus:ring-primary"
                     />
                   </div>
                 </div>
                 
                 <div className="md:col-span-5">
-                  <label className="block text-sm font-medium text-gray-700 mb-3">
+                  <label className="block text-sm font-medium text-foreground mb-3">
                     Location:
                   </label>
                   <div className="relative">
@@ -83,13 +83,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                       placeholder="City or State"
                       value={searchLocation}
                       onChange={(e) => setSearchLocation(e.target.value)}
-                      className="h-12 text-gray-800 border-gray-200 focus:border-red-500 focus:ring-red-500"
+                      className="h-12 text-foreground border-2 border-border focus:border-primary focus:ring-primary"
                     />
                   </div>
                 </div>
                 
                 <div className="md:col-span-2">
-                  <Button className="w-full bg-red-600 hover:bg-red-700 h-12 text-white font-semibold rounded-lg transition-all duration-300">
+                  <Button className="w-full bg-primary hover:bg-primary/90 h-12 text-primary-foreground font-semibold rounded-lg transition-all duration-300 border-2 border-primary">
                     <Search className="mr-2" size={18} />
                     FIND A JOB
                   </Button>
@@ -108,7 +108,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       </div>
 
       {/* Semi-circular White Cutout at Bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-16 bg-white z-30" 
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-background z-30 border-t-2 border-border" 
            style={{
              clipPath: 'ellipse(100% 100% at 50% 100%)'
            }}>
