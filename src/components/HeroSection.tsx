@@ -3,6 +3,7 @@ import React from 'react';
 import { Search, MapPin, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import InspirationSlide from './InspirationSlide';
 
 interface HeroSectionProps {
   searchKeyword: string;
@@ -31,7 +32,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       </div>
       
       <div className="container mx-auto px-4 py-20 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           
           {/* Left Content */}
           <div className="space-y-8">
@@ -99,28 +100,32 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             </div>
           </div>
 
-          {/* Right Content - Illustration */}
-          <div className="relative">
-            <div className="bg-gradient-to-br from-white/10 to-white/5 rounded-3xl p-8 backdrop-blur-sm border border-white/20">
-              <div className="text-center space-y-6">
-                <div className="w-32 h-32 bg-[#D32F2F] rounded-full mx-auto flex items-center justify-center">
-                  <div className="text-6xl">👩‍🏫</div>
+          {/* Right Content - Updated with Inspiration Slide */}
+          <div className="relative space-y-6">
+            {/* Inspiration Slide */}
+            <InspirationSlide />
+            
+            {/* Stats Section */}
+            <div className="bg-gradient-to-br from-white/10 to-white/5 rounded-3xl p-6 backdrop-blur-sm border border-white/20">
+              <div className="text-center space-y-4">
+                <div className="w-20 h-20 bg-[#D32F2F] rounded-full mx-auto flex items-center justify-center">
+                  <div className="text-3xl">👩‍🏫</div>
                 </div>
                 
-                <div className="space-y-4">
-                  <h3 className="text-2xl font-bold">Join 50,000+ Teachers</h3>
-                  <p className="text-gray-300">
+                <div className="space-y-3">
+                  <h3 className="text-xl font-bold">Join 50,000+ Teachers</h3>
+                  <p className="text-gray-300 text-sm">
                     Already finding their perfect teaching positions through our platform
                   </p>
                   
-                  <div className="grid grid-cols-2 gap-4 text-center">
-                    <div className="bg-white/10 rounded-xl p-4">
-                      <div className="text-2xl font-bold text-[#D32F2F]">2000+</div>
-                      <div className="text-sm text-gray-300">Active Jobs</div>
+                  <div className="grid grid-cols-2 gap-3 text-center">
+                    <div className="bg-white/10 rounded-xl p-3">
+                      <div className="text-xl font-bold text-[#D32F2F]">2000+</div>
+                      <div className="text-xs text-gray-300">Active Jobs</div>
                     </div>
-                    <div className="bg-white/10 rounded-xl p-4">
-                      <div className="text-2xl font-bold text-[#D32F2F]">500+</div>
-                      <div className="text-sm text-gray-300">Schools</div>
+                    <div className="bg-white/10 rounded-xl p-3">
+                      <div className="text-xl font-bold text-[#D32F2F]">500+</div>
+                      <div className="text-xs text-gray-300">Schools</div>
                     </div>
                   </div>
                 </div>
