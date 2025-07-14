@@ -24,19 +24,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
   return (
     <section id="home" className="relative min-h-screen bg-gradient-to-br from-slate-100 to-blue-50 overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-black/50 z-10"></div>
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('/lovable-uploads/5fe920d5-60c5-4e2d-90af-f48f6f1e9d6e.png')`
-          }}
-        ></div>
-      </div>
-      
       {/* Main Content Container */}
-      <div className="container mx-auto px-4 relative z-20 flex items-center min-h-screen">
+      <div className="container mx-auto px-4 relative flex items-center min-h-screen">
         <div className="max-w-4xl mx-auto text-center w-full">
           
           {/* Content Section */}
@@ -44,12 +33,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             
             {/* Header Content */}
             <div className="space-y-8">
-              <p className="text-white/90 text-lg flex items-center justify-center font-medium">
-                <TrendingUp className="mr-2 text-white" size={20} />
+              <p className="text-gray-700 text-lg flex items-center justify-center font-medium">
+                <TrendingUp className="mr-2 text-gray-700" size={20} />
                 Find Jobs, Employment & Career Opportunities
               </p>
               
-              <h1 className="text-4xl lg:text-6xl font-bold leading-tight text-white">
+              <h1 className="text-4xl lg:text-6xl font-bold leading-tight text-gray-900">
                 Drop Resume & Get
                 <span className="block mt-2">Your Desire Job!</span>
               </h1>
@@ -99,7 +88,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
             {/* Trending Keywords */}
             <div className="space-y-4">
-              <p className="text-white/80 text-sm">
+              <p className="text-gray-600 text-sm">
                 Trending Keywords: Automotive, Education, Health and Care Engineering
               </p>
             </div>
