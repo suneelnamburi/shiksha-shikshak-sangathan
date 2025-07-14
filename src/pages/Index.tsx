@@ -99,7 +99,7 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       {/* Header */}
       <header className="bg-[#1A252F]/80 backdrop-blur-sm text-white sticky top-0 z-50 shadow-lg">
         <div className="container mx-auto px-4 py-4">
@@ -150,7 +150,7 @@ const Index = () => {
         <TeacherGallery />
 
         {/* Categories Section */}
-        <section id="categories" className="py-16 bg-white">
+        <section id="categories" className="py-16 bg-white/80 backdrop-blur-sm">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-black mb-4">Choose Your Subject Category</h2>
@@ -166,7 +166,7 @@ const Index = () => {
         </section>
 
         {/* Jobs Section */}
-        <section id="jobs" className="py-16 bg-gradient-to-br from-[#FCE4EC] to-[#F8BBD9]">
+        <section id="jobs" className="py-16">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-black mb-4">Teaching Jobs You May Be Interested In</h2>
@@ -174,7 +174,7 @@ const Index = () => {
             </div>
 
             {/* Filters */}
-            <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 mb-8">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-semibold flex items-center">
                   <Filter className="mr-2 text-[#D32F2F]" size={20} />

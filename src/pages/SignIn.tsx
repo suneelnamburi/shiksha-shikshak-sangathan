@@ -19,8 +19,8 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FCE4EC] to-[#F8BBD9] flex items-center justify-center px-4">
-      <Card className="w-full max-w-md shadow-2xl">
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <Card className="w-full max-w-md shadow-2xl bg-white/95 backdrop-blur-sm">
         <CardHeader className="text-center space-y-4 pb-8">
           <div className="flex items-center justify-center space-x-2">
             <div className="w-10 h-10 bg-[#D32F2F] rounded-full flex items-center justify-center">
