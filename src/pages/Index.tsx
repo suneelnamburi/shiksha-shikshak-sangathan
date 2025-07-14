@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Search, BookOpen, Users, Award, MapPin, Clock, Heart, Filter, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -9,6 +8,7 @@ import Sidebar from '@/components/Sidebar';
 import CategoryCard from '@/components/CategoryCard';
 import JobCard from '@/components/JobCard';
 import HeroSection from '@/components/HeroSection';
+import TeacherGallery from '@/components/TeacherGallery';
 
 const Index = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -158,6 +158,9 @@ const Index = () => {
           searchLocation={searchLocation}
           setSearchLocation={setSearchLocation}
         />
+
+        {/* Teacher Gallery Section */}
+        <TeacherGallery />
 
         {/* Categories Section */}
         <section id="categories" className="py-16 bg-white">
