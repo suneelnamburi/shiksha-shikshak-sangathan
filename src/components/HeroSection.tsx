@@ -23,89 +23,92 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   ];
 
   return (
-    <section id="home" className="relative bg-gradient-to-br from-[#1A252F] to-[#2D3748] text-white overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-[#D32F2F] rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#FCE4EC] rounded-full blur-3xl"></div>
+    <section id="home" className="relative min-h-screen bg-gradient-to-br from-slate-100 to-blue-50 overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('/lovable-uploads/5fe920d5-60c5-4e2d-90af-f48f6f1e9d6e.png')`
+          }}
+        ></div>
       </div>
       
-      <div className="container mx-auto px-4 py-20 relative z-10">
+      {/* Curved Bottom Shape */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-white" 
+           style={{
+             clipPath: 'ellipse(100% 100% at 50% 100%)'
+           }}>
+      </div>
+      
+      <div className="container mx-auto px-4 py-20 relative z-10 flex items-center min-h-screen">
         <div className="max-w-4xl mx-auto text-center">
           
           {/* Main Content */}
           <div className="space-y-8">
-            <div className="space-y-4">
-              <p className="text-gray-300 text-lg flex items-center justify-center">
-                <TrendingUp className="mr-2 text-[#D32F2F]" size={20} />
-                Find Teaching Jobs, Career & Opportunities
+            <div className="space-y-6">
+              <p className="text-white/90 text-lg flex items-center justify-center font-medium">
+                <TrendingUp className="mr-2 text-white" size={20} />
+                Find Jobs, Employment & Career Opportunities
               </p>
               
-              <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-                Find Your Dream
-                <span className="block text-[#D32F2F]">Teaching Job!</span>
+              <h1 className="text-4xl lg:text-6xl font-bold leading-tight text-white">
+                Drop Resume & Get
+                <span className="block">Your Desire Job!</span>
               </h1>
-              
-              <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-                Connect with top schools across India. Upload your resume and get noticed by education recruiters.
-              </p>
             </div>
 
             {/* Search Bar */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 max-w-3xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                  <Input
-                    type="text"
-                    placeholder="Job Title (e.g., Math Teacher)"
-                    value={searchKeyword}
-                    onChange={(e) => setSearchKeyword(e.target.value)}
-                    className="pl-10 bg-white/90 border-0 h-12 text-gray-800 placeholder:text-gray-500 focus:ring-2 focus:ring-[#D32F2F]"
-                  />
+            <div className="bg-white rounded-2xl p-6 shadow-2xl max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-end">
+                <div className="md:col-span-5">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Keyword:
+                  </label>
+                  <div className="relative">
+                    <Input
+                      type="text"
+                      placeholder="Job Title"
+                      value={searchKeyword}
+                      onChange={(e) => setSearchKeyword(e.target.value)}
+                      className="h-12 text-gray-800 border-gray-200 focus:border-red-500 focus:ring-red-500"
+                    />
+                  </div>
                 </div>
                 
-                <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
-                  <Input
-                    type="text"
-                    placeholder="Location (City or State)"
-                    value={searchLocation}
-                    onChange={(e) => setSearchLocation(e.target.value)}
-                    className="pl-10 bg-white/90 border-0 h-12 text-gray-800 placeholder:text-gray-500 focus:ring-2 focus:ring-[#D32F2F]"
-                  />
+                <div className="md:col-span-5">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Location:
+                  </label>
+                  <div className="relative">
+                    <Input
+                      type="text"
+                      placeholder="City or State"
+                      value={searchLocation}
+                      onChange={(e) => setSearchLocation(e.target.value)}
+                      className="h-12 text-gray-800 border-gray-200 focus:border-red-500 focus:ring-red-500"
+                    />
+                  </div>
+                </div>
+                
+                <div className="md:col-span-2">
+                  <Button className="w-full bg-red-600 hover:bg-red-700 h-12 text-white font-semibold rounded-lg transition-all duration-300">
+                    <Search className="mr-2" size={18} />
+                    FIND A JOB
+                  </Button>
                 </div>
               </div>
-              
-              <Button className="w-full bg-[#D32F2F] hover:bg-[#B71C1C] h-12 text-lg font-semibold transition-all duration-300 transform hover:scale-105">
-                FIND TEACHING JOBS
-              </Button>
             </div>
 
             {/* Trending Keywords */}
             <div className="space-y-3">
-              <p className="text-sm text-gray-300">Trending Keywords:</p>
-              <div className="flex flex-wrap gap-2 justify-center">
-                {trendingKeywords.map((keyword, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setSearchKeyword(keyword)}
-                    className="px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-sm border border-white/20 hover:border-[#D32F2F] transition-all duration-300"
-                  >
-                    {keyword}
-                  </button>
-                ))}
-              </div>
+              <p className="text-white/80 text-sm">
+                Trending Keywords: Automotive, Education, Health and Care Engineering
+              </p>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Bottom Wave */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 120L50 110C100 100 200 80 300 70C400 60 500 60 600 65C700 70 800 80 900 85C1000 90 1100 90 1150 90L1200 90V120H1150C1100 120 1000 120 900 120C800 120 700 120 600 120C500 120 400 120 300 120C200 120 100 120 50 120H0Z" fill="white"/>
-        </svg>
       </div>
     </section>
   );
