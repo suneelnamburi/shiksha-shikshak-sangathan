@@ -50,8 +50,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               </p>
               
               <h1 className="text-3xl lg:text-5xl font-bold leading-tight text-white">
-                Drop Resume & Get
-                <span className="block mt-2">Your Desire Job!</span>
+                Step into the Teacher Job Portal,
+                <span className="block mt-2">where passion fuels purpose!</span>
               </h1>
             </div>
 
