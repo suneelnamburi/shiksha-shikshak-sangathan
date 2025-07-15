@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Search, BookOpen, Users, Award, MapPin, Clock, Heart, Filter, Phone, Mail, Globe, Shield, Zap, Target, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -18,7 +17,7 @@ const Index = () => {
 
   const jobs = [
     {
-      id: 1,
+      id: '1',
       title: 'Mathematics Teacher',
       school: 'Delhi Public School',
       location: 'New Delhi',
@@ -30,7 +29,7 @@ const Index = () => {
       subjects: ['Mathematics', 'Statistics']
     },
     {
-      id: 2,
+      id: '2',
       title: 'English Teacher',
       school: 'Kendriya Vidyalaya',
       location: 'Mumbai',
@@ -42,7 +41,7 @@ const Index = () => {
       subjects: ['English Literature', 'Grammar']
     },
     {
-      id: 3,
+      id: '3',
       title: 'Science Teacher',
       school: 'Ryan International',
       location: 'Bangalore',
@@ -54,7 +53,7 @@ const Index = () => {
       subjects: ['Physics', 'Chemistry', 'Biology']
     },
     {
-      id: 4,
+      id: '4',
       title: 'Computer Science Teacher',
       school: 'St. Xavier\'s School',
       location: 'Pune',
@@ -66,7 +65,7 @@ const Index = () => {
       subjects: ['Computer Science', 'Programming']
     },
     {
-      id: 5,
+      id: '5',
       title: 'Hindi Teacher',
       school: 'DAV Public School',
       location: 'Chennai',
@@ -78,7 +77,7 @@ const Index = () => {
       subjects: ['Hindi Literature', 'Grammar']
     },
     {
-      id: 6,
+      id: '6',
       title: 'Social Studies Teacher',
       school: 'Amity International',
       location: 'Kolkata',
