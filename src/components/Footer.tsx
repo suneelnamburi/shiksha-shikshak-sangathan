@@ -11,8 +11,8 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <span className="text-primary-foreground font-bold">@</span>
+              <div className="w-8 h-8 bg-brand-primary rounded-full flex items-center justify-center">
+                <span className="text-brand-primary-foreground font-bold">@</span>
               </div>
               <h3 className="text-xl font-bold text-foreground">शिक्षक Portal</h3>
             </div>
@@ -26,19 +26,19 @@ const Footer = () => {
             <h4 className="font-semibold text-foreground">Contact Info</h4>
             <div className="space-y-2">
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                <MapPin size={16} className="text-primary" />
+                <MapPin size={16} className="text-brand-primary" />
                 <span>123 Education Hub, New Delhi - 110001</span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                <Phone size={16} className="text-primary" />
+                <Phone size={16} className="text-brand-primary" />
                 <span>+91 11 2345 6789</span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                <Mail size={16} className="text-primary" />
+                <Mail size={16} className="text-brand-primary" />
                 <span>info@shikshakportal.com</span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                <Clock size={16} className="text-primary" />
+                <Clock size={16} className="text-brand-primary" />
                 <span>Mon - Fri: 9:00 AM - 6:00 PM</span>
               </div>
             </div>
@@ -71,22 +71,22 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="font-semibold text-foreground">Quick Links</h4>
             <div className="space-y-2">
-              <Link to="/about" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Link to="/about" className="block text-sm text-muted-foreground hover:text-brand-primary transition-colors">
                 About Us
               </Link>
-              <Link to="/contact" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Link to="/contact" className="block text-sm text-muted-foreground hover:text-brand-primary transition-colors">
                 Contact
               </Link>
-              <Link to="/careers" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Link to="/careers" className="block text-sm text-muted-foreground hover:text-brand-primary transition-colors">
                 Careers
               </Link>
-              <Link to="/privacy" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Link to="/privacy" className="block text-sm text-muted-foreground hover:text-brand-primary transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Link to="/terms" className="block text-sm text-muted-foreground hover:text-brand-primary transition-colors">
                 Terms of Service
               </Link>
-              <Link to="/help" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Link to="/help" className="block text-sm text-muted-foreground hover:text-brand-primary transition-colors">
                 Help & Support
               </Link>
             </div>
@@ -100,13 +100,13 @@ const Footer = () => {
               © 2024 शिक्षक Portal. All rights reserved.
             </p>
             <div className="flex space-x-4 mt-4 md:mt-0">
-              <Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Link to="/privacy" className="text-sm text-muted-foreground hover:text-brand-primary transition-colors">
                 Privacy
               </Link>
-              <Link to="/terms" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Link to="/terms" className="text-sm text-muted-foreground hover:text-brand-primary transition-colors">
                 Terms
               </Link>
-              <Link to="/sitemap" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              <Link to="/sitemap" className="text-sm text-muted-foreground hover:text-brand-primary transition-colors">
                 Sitemap
               </Link>
             </div>

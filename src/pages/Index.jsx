@@ -276,32 +276,32 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-[#1A252F]/90 backdrop-blur-sm text-white sticky top-0 z-50 shadow-xl border-b-2 border-gray-700">
+      <header className="header-standard">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                <span className="text-[#1A252F] font-bold text-lg">@</span>
+              <div className="w-10 h-10 bg-card rounded-full flex items-center justify-center">
+                <span className="text-brand-dark font-bold text-lg">@</span>
               </div>
               <span className="text-2xl font-bold">शिक्षक Portal</span>
             </Link>
             
             <nav className="hidden lg:flex items-center space-x-8">
-              <a href="#home" className="hover:text-gray-300 transition-colors">Home</a>
-              <a href="#about" className="hover:text-gray-300 transition-colors">About</a>
-              <a href="#jobs" className="hover:text-gray-300 transition-colors">Jobs</a>
-              <a href="#services" className="hover:text-gray-300 transition-colors">Services</a>
-              <a href="#contact" className="hover:text-gray-300 transition-colors">Contact Us</a>
+              <a href="#home" className="hover:text-muted-foreground transition-colors">Home</a>
+              <a href="#about" className="hover:text-muted-foreground transition-colors">About</a>
+              <a href="#jobs" className="hover:text-muted-foreground transition-colors">Jobs</a>
+              <a href="#services" className="hover:text-muted-foreground transition-colors">Services</a>
+              <a href="#contact" className="hover:text-muted-foreground transition-colors">Contact Us</a>
             </nav>
             
             <div className="flex items-center space-x-4">
               <Link to="/signin">
-                <Button variant="outline" className="border-2 border-[#D32F2F] text-[#D32F2F] hover:bg-[#D32F2F] hover:text-white transition-all duration-300">
+                <Button variant="outline" className="btn-outline transition-all duration-300">
                   Sign In
                 </Button>
               </Link>
               <Link to="/signup">
-                <Button className="bg-[#D32F2F] hover:bg-[#B71C1C] transition-all duration-300 transform hover:scale-105">
+                <Button className="btn-primary transition-all duration-300 transform hover:scale-105">
                   Sign Up
                 </Button>
               </Link>
@@ -324,11 +324,11 @@ const Index = () => {
         <TeacherGallery />
 
         {/* Teacher Profiles Section */}
-        <section className="py-16 bg-gray-50 border-t-4 border-gray-400">
+        <section className="section-standard bg-muted/50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-black mb-4">Featured Teacher Profiles</h2>
-              <p className="text-gray-600 text-lg">Meet our experienced and qualified teachers</p>
+              <h2 className="text-4xl font-bold text-foreground mb-4">Featured Teacher Profiles</h2>
+              <p className="text-muted-foreground text-lg">Meet our experienced and qualified teachers</p>
             </div>
             
             <div className="relative max-w-7xl mx-auto">
@@ -356,55 +356,55 @@ const Index = () => {
         </section>
 
         {/* About Section */}
-        <section id="about" className="py-16 bg-white/80 backdrop-blur-sm border-t-4 border-gray-400">
+        <section id="about" className="section-standard bg-card/80 backdrop-blur-sm">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-black mb-4">About शिक्षक Portal</h2>
-              <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+              <h2 className="text-4xl font-bold text-foreground mb-4">About शिक्षक Portal</h2>
+              <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
                 शिक्षक Portal is India's leading educational job platform connecting talented teachers with reputable schools and institutions. We bridge the gap between quality education and skilled educators.
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-              <div className="border-2 border-gray-300 rounded-2xl p-8 bg-white shadow-lg">
-                <h3 className="text-2xl font-bold text-black mb-6">Our Mission</h3>
-                <p className="text-gray-600 mb-6">
+              <div className="card-standard p-8">
+                <h3 className="text-2xl font-bold text-foreground mb-6">Our Mission</h3>
+                <p className="text-muted-foreground mb-6">
                   To revolutionize the education sector by providing a comprehensive platform that makes teacher recruitment efficient, transparent, and accessible to all.
                 </p>
-                <ul className="space-y-3 text-gray-600">
+                <ul className="space-y-3 text-muted-foreground">
                   <li className="flex items-center">
-                    <div className="w-2 h-2 bg-[#D32F2F] rounded-full mr-3"></div>
+                    <div className="w-2 h-2 bg-brand-primary rounded-full mr-3"></div>
                     Connecting 10,000+ teachers with opportunities
                   </li>
                   <li className="flex items-center">
-                    <div className="w-2 h-2 bg-[#D32F2F] rounded-full mr-3"></div>
+                    <div className="w-2 h-2 bg-brand-primary rounded-full mr-3"></div>
                     Partnering with 500+ educational institutions
                   </li>
                   <li className="flex items-center">
-                    <div className="w-2 h-2 bg-[#D32F2F] rounded-full mr-3"></div>
+                    <div className="w-2 h-2 bg-brand-primary rounded-full mr-3"></div>
                     Serving across all major cities in India
                   </li>
                 </ul>
               </div>
-              <div className="bg-gradient-to-br from-[#D32F2F] to-[#B71C1C] rounded-2xl p-8 text-white border-2 border-gray-300 shadow-lg">
+              <div className="brand-gradient rounded-2xl p-8 text-brand-primary-foreground border-2 border-border shadow-lg">
                 <h3 className="text-2xl font-bold mb-4">Why Choose Us?</h3>
                 <div className="space-y-4">
                   <div className="flex items-start">
-                    <Shield className="mr-3 mt-1 text-white" size={20} />
+                    <Shield className="mr-3 mt-1 text-brand-primary-foreground" size={20} />
                     <div>
                       <h4 className="font-semibold">Verified Institutions</h4>
                       <p className="text-sm opacity-90">All schools are thoroughly verified</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <Target className="mr-3 mt-1 text-white" size={20} />
+                    <Target className="mr-3 mt-1 text-brand-primary-foreground" size={20} />
                     <div>
                       <h4 className="font-semibold">Perfect Matching</h4>
                       <p className="text-sm opacity-90">AI-powered job matching system</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <Zap className="mr-3 mt-1 text-white" size={20} />
+                    <Zap className="mr-3 mt-1 text-brand-primary-foreground" size={20} />
                     <div>
                       <h4 className="font-semibold">Quick Process</h4>
                       <p className="text-sm opacity-90">Fast and efficient hiring process</p>
@@ -417,35 +417,35 @@ const Index = () => {
         </section>
 
         {/* Services Section */}
-        <section id="services" className="py-16 bg-gray-50 border-t-4 border-gray-400">
+        <section id="services" className="section-standard bg-muted/50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-black mb-4">Our Services</h2>
-              <p className="text-gray-600 text-lg">Comprehensive solutions for educational recruitment</p>
+              <h2 className="text-4xl font-bold text-foreground mb-4">Our Services</h2>
+              <p className="text-muted-foreground text-lg">Comprehensive solutions for educational recruitment</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {services.map((service, index) => (
-                <Card key={index} className="border-2 border-gray-300 hover:shadow-xl transition-shadow relative overflow-hidden bg-white h-full">
+                <Card key={index} className="card-standard relative overflow-hidden h-full">
                   {service.isPaid && (
-                    <div className="absolute top-2 right-2 bg-[#D32F2F] text-white px-2 py-1 rounded-full text-xs font-bold">
+                    <div className="absolute top-2 right-2 bg-brand-primary text-brand-primary-foreground px-2 py-1 rounded-full text-xs font-bold">
                       PREMIUM
                     </div>
                   )}
                   <CardHeader className="text-center">
-                    <div className="w-16 h-16 bg-[#D32F2F] rounded-full flex items-center justify-center mx-auto mb-4">
-                      <service.icon className="text-white" size={24} />
+                    <div className="w-16 h-16 bg-brand-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                      <service.icon className="text-brand-primary-foreground" size={24} />
                     </div>
-                    <h3 className="text-xl font-bold text-black">{service.title}</h3>
+                    <h3 className="text-xl font-bold text-foreground">{service.title}</h3>
                     {service.isPaid && (
-                      <p className="text-[#D32F2F] font-bold text-lg">{service.price}</p>
+                      <p className="text-brand-primary font-bold text-lg">{service.price}</p>
                     )}
                   </CardHeader>
                   <CardContent className="text-center flex flex-col justify-between flex-1">
-                    <p className="text-gray-600 mb-4">{service.description}</p>
+                    <p className="text-muted-foreground mb-4">{service.description}</p>
                     {service.isPaid && (
                       <Link to="/subscribe">
-                        <Button className="mt-4 bg-[#D32F2F] hover:bg-[#B71C1C] w-full">
+                        <Button className="mt-4 btn-primary w-full">
                           Subscribe Now
                         </Button>
                       </Link>
@@ -458,28 +458,28 @@ const Index = () => {
         </section>
 
         {/* Job Requirements Section */}
-        <section className="py-16 bg-background border-t-4 border-gray-400">
+        <section className="section-standard bg-background">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-black mb-4">Urgent Job Requirements</h2>
-              <p className="text-gray-600 text-lg">Schools actively seeking qualified teachers</p>
+              <h2 className="text-4xl font-bold text-foreground mb-4">Urgent Job Requirements</h2>
+              <p className="text-muted-foreground text-lg">Schools actively seeking qualified teachers</p>
             </div>
 
             {/* Filters */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 mb-8 border-2 border-gray-300 max-w-6xl mx-auto">
+            <div className="filter-section max-w-6xl mx-auto">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-semibold flex items-center">
-                  <Filter className="mr-2 text-[#D32F2F]" size={20} />
+                  <Filter className="mr-2 text-brand-primary" size={20} />
                   Filter Requirements
                 </h3>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                 <Select>
-                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-card border-2 border-border focus:border-brand-primary focus:ring-brand-primary">
                     <SelectValue placeholder="Subject" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
+                  <SelectContent className="bg-card border-2 border-border shadow-lg z-50">
                     <SelectItem value="mathematics">Mathematics</SelectItem>
                     <SelectItem value="english">English</SelectItem>
                     <SelectItem value="science">Science</SelectItem>
@@ -490,10 +490,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-card border-2 border-border focus:border-brand-primary focus:ring-brand-primary">
                     <SelectValue placeholder="Board Type" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
+                  <SelectContent className="bg-card border-2 border-border shadow-lg z-50">
                     <SelectItem value="cbse">CBSE</SelectItem>
                     <SelectItem value="icse">ICSE</SelectItem>
                     <SelectItem value="state">State Board</SelectItem>
@@ -503,10 +503,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-card border-2 border-border focus:border-brand-primary focus:ring-brand-primary">
                     <SelectValue placeholder="Experience" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
+                  <SelectContent className="bg-card border-2 border-border shadow-lg z-50">
                     <SelectItem value="0-1">0-1 years</SelectItem>
                     <SelectItem value="1-3">1-3 years</SelectItem>
                     <SelectItem value="3-5">3-5 years</SelectItem>
@@ -516,10 +516,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-card border-2 border-border focus:border-brand-primary focus:ring-brand-primary">
                     <SelectValue placeholder="Urgency" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
+                  <SelectContent className="bg-card border-2 border-border shadow-lg z-50">
                     <SelectItem value="immediate">Immediate</SelectItem>
                     <SelectItem value="asap">ASAP</SelectItem>
                     <SelectItem value="15-days">Within 15 days</SelectItem>
@@ -528,10 +528,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-card border-2 border-border focus:border-brand-primary focus:ring-brand-primary">
                     <SelectValue placeholder="Location" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
+                  <SelectContent className="bg-card border-2 border-border shadow-lg z-50">
                     <SelectItem value="delhi">Delhi</SelectItem>
                     <SelectItem value="mumbai">Mumbai</SelectItem>
                     <SelectItem value="bangalore">Bangalore</SelectItem>
@@ -552,28 +552,28 @@ const Index = () => {
         </section>
 
         {/* Jobs Section */}
-        <section id="jobs" className="py-16 bg-background border-t-4 border-gray-400">
+        <section id="jobs" className="section-standard bg-background">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-black mb-4">Teaching Jobs You May Be Interested In</h2>
-              <p className="text-gray-600 text-lg">Latest opportunities from top schools across India</p>
+              <h2 className="text-4xl font-bold text-foreground mb-4">Teaching Jobs You May Be Interested In</h2>
+              <p className="text-muted-foreground text-lg">Latest opportunities from top schools across India</p>
             </div>
 
             {/* Filters */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 mb-8 border-2 border-gray-300 max-w-6xl mx-auto">
+            <div className="filter-section max-w-6xl mx-auto">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-semibold flex items-center">
-                  <Filter className="mr-2 text-[#D32F2F]" size={20} />
+                  <Filter className="mr-2 text-brand-primary" size={20} />
                   Filter Jobs
                 </h3>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                 <Select>
-                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-card border-2 border-border focus:border-brand-primary focus:ring-brand-primary">
                     <SelectValue placeholder="Subject" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
+                  <SelectContent className="bg-card border-2 border-border shadow-lg z-50">
                     <SelectItem value="mathematics">Mathematics</SelectItem>
                     <SelectItem value="english">English</SelectItem>
                     <SelectItem value="science">Science</SelectItem>
@@ -584,10 +584,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-card border-2 border-border focus:border-brand-primary focus:ring-brand-primary">
                     <SelectValue placeholder="Board Type" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
+                  <SelectContent className="bg-card border-2 border-border shadow-lg z-50">
                     <SelectItem value="cbse">CBSE</SelectItem>
                     <SelectItem value="icse">ICSE</SelectItem>
                     <SelectItem value="state">State Board</SelectItem>
@@ -597,10 +597,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-card border-2 border-border focus:border-brand-primary focus:ring-brand-primary">
                     <SelectValue placeholder="Experience" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
+                  <SelectContent className="bg-card border-2 border-border shadow-lg z-50">
                     <SelectItem value="0-1">0-1 years</SelectItem>
                     <SelectItem value="1-3">1-3 years</SelectItem>
                     <SelectItem value="3-5">3-5 years</SelectItem>
@@ -610,10 +610,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-card border-2 border-border focus:border-brand-primary focus:ring-brand-primary">
                     <SelectValue placeholder="Language" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
+                  <SelectContent className="bg-card border-2 border-border shadow-lg z-50">
                     <SelectItem value="english">English</SelectItem>
                     <SelectItem value="hindi">Hindi</SelectItem>
                     <SelectItem value="tamil">Tamil</SelectItem>
@@ -624,10 +624,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-card border-2 border-border focus:border-brand-primary focus:ring-brand-primary">
                     <SelectValue placeholder="Job Type" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
+                  <SelectContent className="bg-card border-2 border-border shadow-lg z-50">
                     <SelectItem value="full-time">Full-time</SelectItem>
                     <SelectItem value="part-time">Part-time</SelectItem>
                     <SelectItem value="contract">Contract</SelectItem>
@@ -662,51 +662,51 @@ const Index = () => {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-16 bg-[#1A252F] text-white border-t-4 border-gray-700">
+        <section id="contact" className="section-standard bg-brand-dark text-brand-primary-foreground">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4">Contact Us</h2>
-              <p className="text-gray-300 text-lg">Get in touch with our team for any queries or support</p>
+              <p className="text-muted-foreground text-lg">Get in touch with our team for any queries or support</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-              <div className="text-center md:text-left border-2 border-gray-600 rounded-2xl p-8 bg-white/10 backdrop-blur-sm">
+              <div className="text-center md:text-left border-2 border-border rounded-2xl p-8 bg-card/10 backdrop-blur-sm">
                 <h3 className="text-2xl font-bold mb-6">Get In Touch</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-center md:justify-start">
-                    <Phone className="mr-4 text-[#D32F2F]" size={20} />
+                    <Phone className="mr-4 text-brand-primary" size={20} />
                     <span>+91 98765 43210</span>
                   </div>
                   <div className="flex items-center justify-center md:justify-start">
-                    <Mail className="mr-4 text-[#D32F2F]" size={20} />
+                    <Mail className="mr-4 text-brand-primary" size={20} />
                     <span>info@shikshakportal.com</span>
                   </div>
                   <div className="flex items-center justify-center md:justify-start">
-                    <MapPin className="mr-4 text-[#D32F2F]" size={20} />
+                    <MapPin className="mr-4 text-brand-primary" size={20} />
                     <span>123 Education Street, New Delhi, India</span>
                   </div>
                 </div>
               </div>
               
-              <div className="text-center md:text-left border-2 border-gray-600 rounded-2xl p-8 bg-white/10 backdrop-blur-sm">
+              <div className="text-center md:text-left border-2 border-border rounded-2xl p-8 bg-card/10 backdrop-blur-sm">
                 <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
                 <form className="space-y-4">
                   <Input
                     type="text"
                     placeholder="Your Name"
-                    className="bg-white/10 border-2 border-white/20 text-white placeholder:text-white/70"
+                    className="bg-card/10 border-2 border-border text-foreground placeholder:text-muted-foreground"
                   />
                   <Input
                     type="email"
                     placeholder="Your Email"
-                    className="bg-white/10 border-2 border-white/20 text-white placeholder:text-white/70"
+                    className="bg-card/10 border-2 border-border text-foreground placeholder:text-muted-foreground"
                   />
                   <textarea
                     placeholder="Your Message"
                     rows={4}
-                    className="w-full px-3 py-2 bg-white/10 border-2 border-white/20 rounded-md text-white placeholder:text-white/70 focus:outline-none focus:ring-2 focus:ring-[#D32F2F]"
+                    className="w-full px-3 py-2 bg-card/10 border-2 border-border rounded-md text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-brand-primary"
                   />
-                  <Button className="bg-[#D32F2F] hover:bg-[#B71C1C] w-full">
+                  <Button className="btn-primary w-full">
                     Send Message
                   </Button>
                 </form>
