@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { MapPin, Clock, BookOpen, DollarSign } from 'lucide-react';
+import { MapPin, Clock, BookOpen, DollarSign, Building2, Hash } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface JobCardProps {
@@ -17,6 +17,8 @@ interface JobCardProps {
   salary: string;
   board: string;
   subjects: string[];
+  schoolId?: string;
+  institutionId?: string;
 }
 
 const JobCard: React.FC<JobCardProps> = ({
@@ -29,10 +31,12 @@ const JobCard: React.FC<JobCardProps> = ({
   experience,
   salary,
   board,
-  subjects
+  subjects,
+  schoolId,
+  institutionId
 }) => {
   return (
-    <Card className="border-2 border-border hover:shadow-lg transition-all duration-300 hover:border-primary/50 group">
+    <Card className="border-2 border-gray-300 hover:shadow-xl transition-all duration-300 hover:border-primary/70 group bg-white">
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
           <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
@@ -84,6 +88,28 @@ const JobCard: React.FC<JobCardProps> = ({
             )}
           </div>
         </div>
+
+        {/* Institution and School IDs */}
+        <div className="bg-gray-50 rounded-lg p-3 space-y-2">
+          <div className="flex items-center justify-between text-xs">
+            <div className="flex items-center text-muted-foreground">
+              <Hash size={12} className="mr-1 text-primary" />
+              <span>Job ID: {id}</span>
+            </div>
+          </div>
+          {schoolId && (
+            <div className="flex items-center text-xs text-muted-foreground">
+              <Building2 size={12} className="mr-1 text-primary" />
+              <span>School ID: {schoolId}</span>
+            </div>
+          )}
+          {institutionId && (
+            <div className="flex items-center text-xs text-muted-foreground">
+              <Building2 size={12} className="mr-1 text-primary" />
+              <span>Institution ID: {institutionId}</span>
+            </div>
+          )}
+        </div>
         
         <div className="flex gap-2 pt-2">
           <Button 
@@ -92,7 +118,7 @@ const JobCard: React.FC<JobCardProps> = ({
           >
             <Link to={`/apply-now/${id}`}>Apply Now</Link>
           </Button>
-          <Button variant="outline" className="flex-1">
+          <Button variant="outline" className="flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
             Save Job
           </Button>
         </div>

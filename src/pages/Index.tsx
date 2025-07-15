@@ -11,6 +11,7 @@ import JobCard from '@/components/JobCard';
 import HeroSection from '@/components/HeroSection';
 import TeacherGallery from '@/components/TeacherGallery';
 import JobRequirementCard from '@/components/JobRequirementCard';
+import TeacherProfileCard from '@/components/TeacherProfileCard';
 
 const Index = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -18,7 +19,7 @@ const Index = () => {
 
   const jobs = [
     {
-      id: '1',
+      id: 'JOB-001',
       title: 'Mathematics Teacher',
       school: 'Delhi Public School',
       location: 'New Delhi',
@@ -27,10 +28,12 @@ const Index = () => {
       experience: '3-5 years',
       salary: '₹40,000 - ₹60,000',
       board: 'CBSE',
-      subjects: ['Mathematics', 'Statistics']
+      subjects: ['Mathematics', 'Statistics'],
+      schoolId: 'SCH-DPS-001',
+      institutionId: 'INST-DPS-DELHI'
     },
     {
-      id: '2',
+      id: 'JOB-002',
       title: 'English Teacher',
       school: 'Kendriya Vidyalaya',
       location: 'Mumbai',
@@ -39,10 +42,12 @@ const Index = () => {
       experience: '2-4 years',
       salary: '₹35,000 - ₹50,000',
       board: 'NCERT',
-      subjects: ['English Literature', 'Grammar']
+      subjects: ['English Literature', 'Grammar'],
+      schoolId: 'SCH-KV-002',
+      institutionId: 'INST-KV-MUMBAI'
     },
     {
-      id: '3',
+      id: 'JOB-003',
       title: 'Science Teacher',
       school: 'Ryan International',
       location: 'Bangalore',
@@ -51,10 +56,12 @@ const Index = () => {
       experience: '5-8 years',
       salary: '₹45,000 - ₹70,000',
       board: 'ICSE',
-      subjects: ['Physics', 'Chemistry', 'Biology']
+      subjects: ['Physics', 'Chemistry', 'Biology'],
+      schoolId: 'SCH-RYAN-003',
+      institutionId: 'INST-RYAN-BANGALORE'
     },
     {
-      id: '4',
+      id: 'JOB-004',
       title: 'Computer Science Teacher',
       school: 'St. Xavier\'s School',
       location: 'Pune',
@@ -63,10 +70,12 @@ const Index = () => {
       experience: '1-3 years',
       salary: '₹30,000 - ₹45,000',
       board: 'State Board',
-      subjects: ['Computer Science', 'Programming']
+      subjects: ['Computer Science', 'Programming'],
+      schoolId: 'SCH-XAVIER-004',
+      institutionId: 'INST-XAVIER-PUNE'
     },
     {
-      id: '5',
+      id: 'JOB-005',
       title: 'Hindi Teacher',
       school: 'DAV Public School',
       location: 'Chennai',
@@ -75,10 +84,12 @@ const Index = () => {
       experience: '2-5 years',
       salary: '₹25,000 - ₹40,000',
       board: 'CBSE',
-      subjects: ['Hindi Literature', 'Grammar']
+      subjects: ['Hindi Literature', 'Grammar'],
+      schoolId: 'SCH-DAV-005',
+      institutionId: 'INST-DAV-CHENNAI'
     },
     {
-      id: '6',
+      id: 'JOB-006',
       title: 'Social Studies Teacher',
       school: 'Amity International',
       location: 'Kolkata',
@@ -87,7 +98,96 @@ const Index = () => {
       experience: '4-7 years',
       salary: '₹38,000 - ₹55,000',
       board: 'CBSE',
-      subjects: ['History', 'Geography', 'Civics']
+      subjects: ['History', 'Geography', 'Civics'],
+      schoolId: 'SCH-AMITY-006',
+      institutionId: 'INST-AMITY-KOLKATA'
+    }
+  ];
+
+  const teacherProfiles = [
+    {
+      id: 'TEACHER-001',
+      name: 'Dr. Priya Sharma',
+      subject: 'Mathematics',
+      experience: '8 years',
+      location: 'New Delhi',
+      education: 'Ph.D. in Mathematics',
+      rating: 4.8,
+      totalRatings: 127,
+      school: 'Delhi Public School',
+      email: 'priya.sharma@example.com',
+      phone: '+91 98765 43210',
+      specializations: ['Algebra', 'Calculus', 'Statistics', 'Geometry']
+    },
+    {
+      id: 'TEACHER-002',
+      name: 'Prof. Rajesh Kumar',
+      subject: 'Physics',
+      experience: '12 years',
+      location: 'Mumbai',
+      education: 'M.Sc. Physics, B.Ed.',
+      rating: 4.9,
+      totalRatings: 89,
+      school: 'Kendriya Vidyalaya',
+      email: 'rajesh.kumar@example.com',
+      phone: '+91 87654 32109',
+      specializations: ['Mechanics', 'Optics', 'Thermodynamics', 'Electronics']
+    },
+    {
+      id: 'TEACHER-003',
+      name: 'Ms. Anita Patel',
+      subject: 'English',
+      experience: '6 years',
+      location: 'Bangalore',
+      education: 'MA English Literature',
+      rating: 4.7,
+      totalRatings: 156,
+      school: 'Ryan International',
+      email: 'anita.patel@example.com',
+      phone: '+91 76543 21098',
+      specializations: ['Literature', 'Grammar', 'Creative Writing', 'Communication']
+    },
+    {
+      id: 'TEACHER-004',
+      name: 'Mr. Suresh Gupta',
+      subject: 'Chemistry',
+      experience: '10 years',
+      location: 'Pune',
+      education: 'M.Sc. Chemistry, B.Ed.',
+      rating: 4.6,
+      totalRatings: 98,
+      school: 'St. Xavier\'s School',
+      email: 'suresh.gupta@example.com',
+      phone: '+91 65432 10987',
+      specializations: ['Organic Chemistry', 'Physical Chemistry', 'Lab Techniques']
+    },
+    {
+      id: 'TEACHER-005',
+      name: 'Mrs. Kavita Singh',
+      subject: 'Hindi',
+      experience: '7 years',
+      location: 'Chennai',
+      education: 'MA Hindi Literature',
+      rating: 4.5,
+      totalRatings: 143,
+      school: 'DAV Public School',
+      email: 'kavita.singh@example.com',
+      phone: '+91 54321 09876',
+      specializations: ['Literature', 'Grammar', 'Poetry', 'Translation']
+    },
+    {
+      id: 'TEACHER-006',
+      name: 'Dr. Amit Verma',
+      subject: 'Biology',
+      experience: '15 years',
+      location: 'Kolkata',
+      education: 'Ph.D. in Biology',
+      rating: 4.9,
+      totalRatings: 201,
+      school: 'Amity International',
+      email: 'amit.verma@example.com',
+      phone: '+91 43210 98765',
+      specializations: ['Genetics', 'Ecology', 'Botany', 'Zoology']
     }
   ];
 
@@ -175,7 +275,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-[#1A252F]/80 backdrop-blur-sm text-white sticky top-0 z-50 shadow-lg">
+      <header className="bg-[#1A252F]/90 backdrop-blur-sm text-white sticky top-0 z-50 shadow-xl border-b-2 border-gray-700">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center space-x-2">
@@ -195,7 +295,7 @@ const Index = () => {
             
             <div className="flex items-center space-x-4">
               <Link to="/signin">
-                <Button variant="outline" className="border-[#D32F2F] text-[#D32F2F] hover:bg-[#D32F2F] hover:text-white transition-all duration-300">
+                <Button variant="outline" className="border-2 border-[#D32F2F] text-[#D32F2F] hover:bg-[#D32F2F] hover:text-white transition-all duration-300">
                   Sign In
                 </Button>
               </Link>
@@ -222,8 +322,24 @@ const Index = () => {
         {/* Teacher Gallery Section */}
         <TeacherGallery />
 
+        {/* Teacher Profiles Section */}
+        <section className="py-16 bg-gray-50 border-t-4 border-gray-400">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-black mb-4">Featured Teacher Profiles</h2>
+              <p className="text-gray-600 text-lg">Meet our experienced and qualified teachers</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {teacherProfiles.map((teacher) => (
+                <TeacherProfileCard key={teacher.id} {...teacher} />
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* About Section */}
-        <section id="about" className="py-16 bg-white/80 backdrop-blur-sm">
+        <section id="about" className="py-16 bg-white/80 backdrop-blur-sm border-t-4 border-gray-400">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-black mb-4">About शिक्षक Portal</h2>
@@ -233,7 +349,7 @@ const Index = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
+              <div className="border-2 border-gray-300 rounded-2xl p-8 bg-white shadow-lg">
                 <h3 className="text-2xl font-bold text-black mb-6">Our Mission</h3>
                 <p className="text-gray-600 mb-6">
                   To revolutionize the education sector by providing a comprehensive platform that makes teacher recruitment efficient, transparent, and accessible to all.
@@ -253,7 +369,7 @@ const Index = () => {
                   </li>
                 </ul>
               </div>
-              <div className="bg-gradient-to-br from-[#D32F2F] to-[#B71C1C] rounded-2xl p-8 text-white">
+              <div className="bg-gradient-to-br from-[#D32F2F] to-[#B71C1C] rounded-2xl p-8 text-white border-2 border-gray-300 shadow-lg">
                 <h3 className="text-2xl font-bold mb-4">Why Choose Us?</h3>
                 <div className="space-y-4">
                   <div className="flex items-start">
@@ -284,7 +400,7 @@ const Index = () => {
         </section>
 
         {/* Services Section */}
-        <section id="services" className="py-16 bg-gray-50">
+        <section id="services" className="py-16 bg-gray-50 border-t-4 border-gray-400">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-black mb-4">Our Services</h2>
@@ -293,7 +409,7 @@ const Index = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {services.map((service, index) => (
-                <Card key={index} className="border-2 border-border hover:shadow-lg transition-shadow relative overflow-hidden">
+                <Card key={index} className="border-2 border-gray-300 hover:shadow-xl transition-shadow relative overflow-hidden bg-white">
                   {service.isPaid && (
                     <div className="absolute top-2 right-2 bg-[#D32F2F] text-white px-2 py-1 rounded-full text-xs font-bold">
                       PREMIUM
@@ -309,11 +425,13 @@ const Index = () => {
                     )}
                   </CardHeader>
                   <CardContent className="text-center">
-                    <p className="text-gray-600">{service.description}</p>
+                    <p className="text-gray-600 mb-4">{service.description}</p>
                     {service.isPaid && (
-                      <Button className="mt-4 bg-[#D32F2F] hover:bg-[#B71C1C] w-full">
-                        Subscribe Now
-                      </Button>
+                      <Link to="/subscribe">
+                        <Button className="mt-4 bg-[#D32F2F] hover:bg-[#B71C1C] w-full">
+                          Subscribe Now
+                        </Button>
+                      </Link>
                     )}
                   </CardContent>
                 </Card>
@@ -323,7 +441,7 @@ const Index = () => {
         </section>
 
         {/* Job Requirements Section */}
-        <section className="py-16 bg-background">
+        <section className="py-16 bg-background border-t-4 border-gray-400">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-black mb-4">Urgent Job Requirements</h2>
@@ -331,7 +449,7 @@ const Index = () => {
             </div>
 
             {/* Filters */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 mb-8">
+            <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 mb-8 border-2 border-gray-300">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-semibold flex items-center">
                   <Filter className="mr-2 text-[#D32F2F]" size={20} />
@@ -341,10 +459,10 @@ const Index = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                 <Select>
-                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
                     <SelectValue placeholder="Subject" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
                     <SelectItem value="mathematics">Mathematics</SelectItem>
                     <SelectItem value="english">English</SelectItem>
                     <SelectItem value="science">Science</SelectItem>
@@ -355,10 +473,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
                     <SelectValue placeholder="Board Type" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
                     <SelectItem value="cbse">CBSE</SelectItem>
                     <SelectItem value="icse">ICSE</SelectItem>
                     <SelectItem value="state">State Board</SelectItem>
@@ -368,10 +486,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
                     <SelectValue placeholder="Experience" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
                     <SelectItem value="0-1">0-1 years</SelectItem>
                     <SelectItem value="1-3">1-3 years</SelectItem>
                     <SelectItem value="3-5">3-5 years</SelectItem>
@@ -381,10 +499,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
                     <SelectValue placeholder="Urgency" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
                     <SelectItem value="immediate">Immediate</SelectItem>
                     <SelectItem value="asap">ASAP</SelectItem>
                     <SelectItem value="15-days">Within 15 days</SelectItem>
@@ -393,10 +511,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
                     <SelectValue placeholder="Location" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
                     <SelectItem value="delhi">Delhi</SelectItem>
                     <SelectItem value="mumbai">Mumbai</SelectItem>
                     <SelectItem value="bangalore">Bangalore</SelectItem>
@@ -417,7 +535,7 @@ const Index = () => {
         </section>
 
         {/* Jobs Section */}
-        <section id="jobs" className="py-16 bg-background">
+        <section id="jobs" className="py-16 bg-background border-t-4 border-gray-400">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-black mb-4">Teaching Jobs You May Be Interested In</h2>
@@ -425,7 +543,7 @@ const Index = () => {
             </div>
 
             {/* Filters */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 mb-8">
+            <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 mb-8 border-2 border-gray-300">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-semibold flex items-center">
                   <Filter className="mr-2 text-[#D32F2F]" size={20} />
@@ -435,10 +553,10 @@ const Index = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                 <Select>
-                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
                     <SelectValue placeholder="Subject" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
                     <SelectItem value="mathematics">Mathematics</SelectItem>
                     <SelectItem value="english">English</SelectItem>
                     <SelectItem value="science">Science</SelectItem>
@@ -449,10 +567,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
                     <SelectValue placeholder="Board Type" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
                     <SelectItem value="cbse">CBSE</SelectItem>
                     <SelectItem value="icse">ICSE</SelectItem>
                     <SelectItem value="state">State Board</SelectItem>
@@ -462,10 +580,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
                     <SelectValue placeholder="Experience" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
                     <SelectItem value="0-1">0-1 years</SelectItem>
                     <SelectItem value="1-3">1-3 years</SelectItem>
                     <SelectItem value="3-5">3-5 years</SelectItem>
@@ -475,10 +593,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
                     <SelectValue placeholder="Language" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
                     <SelectItem value="english">English</SelectItem>
                     <SelectItem value="hindi">Hindi</SelectItem>
                     <SelectItem value="tamil">Tamil</SelectItem>
@@ -489,10 +607,10 @@ const Index = () => {
                 </Select>
 
                 <Select>
-                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                  <SelectTrigger className="bg-white border-2 border-gray-300 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
                     <SelectValue placeholder="Job Type" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+                  <SelectContent className="bg-white border-2 border-gray-300 shadow-lg z-50">
                     <SelectItem value="full-time">Full-time</SelectItem>
                     <SelectItem value="part-time">Part-time</SelectItem>
                     <SelectItem value="contract">Contract</SelectItem>
@@ -511,7 +629,7 @@ const Index = () => {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-16 bg-[#1A252F] text-white">
+        <section id="contact" className="py-16 bg-[#1A252F] text-white border-t-4 border-gray-700">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4">Contact Us</h2>
@@ -519,7 +637,7 @@ const Index = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div className="text-center md:text-left">
+              <div className="text-center md:text-left border-2 border-gray-600 rounded-2xl p-8 bg-white/10 backdrop-blur-sm">
                 <h3 className="text-2xl font-bold mb-6">Get In Touch</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-center md:justify-start">
@@ -537,23 +655,23 @@ const Index = () => {
                 </div>
               </div>
               
-              <div className="text-center md:text-left">
+              <div className="text-center md:text-left border-2 border-gray-600 rounded-2xl p-8 bg-white/10 backdrop-blur-sm">
                 <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
                 <form className="space-y-4">
                   <Input
                     type="text"
                     placeholder="Your Name"
-                    className="bg-white/10 border-white/20 text-white placeholder:text-white/70"
+                    className="bg-white/10 border-2 border-white/20 text-white placeholder:text-white/70"
                   />
                   <Input
                     type="email"
                     placeholder="Your Email"
-                    className="bg-white/10 border-white/20 text-white placeholder:text-white/70"
+                    className="bg-white/10 border-2 border-white/20 text-white placeholder:text-white/70"
                   />
                   <textarea
                     placeholder="Your Message"
                     rows={4}
-                    className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-md text-white placeholder:text-white/70 focus:outline-none focus:ring-2 focus:ring-[#D32F2F]"
+                    className="w-full px-3 py-2 bg-white/10 border-2 border-white/20 rounded-md text-white placeholder:text-white/70 focus:outline-none focus:ring-2 focus:ring-[#D32F2F]"
                   />
                   <Button className="bg-[#D32F2F] hover:bg-[#B71C1C] w-full">
                     Send Message
