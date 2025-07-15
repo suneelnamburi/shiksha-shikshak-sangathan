@@ -23,7 +23,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   ];
 
   return (
-    <section id="home" className="relative bg-[#1A252F] overflow-hidden">
+    <section id="home" className="relative bg-brand-dark overflow-hidden">
       {/* Main Content Container */}
       <div className="container mx-auto px-4 relative flex items-center py-16 z-10">
         <div className="max-w-4xl mx-auto text-center w-full">
@@ -57,7 +57,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                       placeholder="Job Title"
                       value={searchKeyword}
                       onChange={(e) => setSearchKeyword(e.target.value)}
-                      className="h-12 text-foreground border-2 border-border focus:border-primary focus:ring-primary"
+                      className="h-12 text-foreground border-2 border-border focus:border-brand-primary focus:ring-brand-primary"
                     />
                   </div>
                 </div>
@@ -72,13 +72,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                       placeholder="City or State"
                       value={searchLocation}
                       onChange={(e) => setSearchLocation(e.target.value)}
-                      className="h-12 text-foreground border-2 border-border focus:border-primary focus:ring-primary"
+                      className="h-12 text-foreground border-2 border-border focus:border-brand-primary focus:ring-brand-primary"
                     />
                   </div>
                 </div>
                 
                 <div className="md:col-span-2">
-                  <Button className="w-full bg-primary hover:bg-primary/90 h-12 text-primary-foreground font-semibold rounded-lg transition-all duration-300 border-2 border-primary">
+                  <Button className="w-full btn-primary h-12 font-semibold rounded-lg transition-all duration-300 border-2 border-brand-primary">
                     <Search className="mr-2" size={18} />
                     FIND A JOB
                   </Button>
