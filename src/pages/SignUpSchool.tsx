@@ -5,29 +5,31 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Link } from 'react-router-dom';
-import { Eye, EyeOff, Mail, Lock, User, Phone, Home, GraduationCap, BookOpen } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, User, Phone, Home, Building, MapPin, Globe } from 'lucide-react';
 
-const SignUp = () => {
+const SignUpSchool = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    schoolName: '',
+    principalName: '',
     email: '',
     phone: '',
     password: '',
     confirmPassword: '',
-    qualification: '',
-    experience: '',
-    subjects: '',
-    address: ''
+    address: '',
+    city: '',
+    state: '',
+    board: '',
+    website: '',
+    establishedYear: ''
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [teacherId, setTeacherId] = useState('');
+  const [schoolId, setSchoolId] = useState('');
 
-  const generateTeacherId = () => {
+  const generateSchoolId = () => {
     const timestamp = Date.now().toString(36);
     const randomStr = Math.random().toString(36).substr(2, 5);
-    return `TCH_${timestamp}_${randomStr}`.toUpperCase();
+    return `SCH_${timestamp}_${randomStr}`.toUpperCase();
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,9 +39,9 @@ const SignUp = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newTeacherId = generateTeacherId();
-    setTeacherId(newTeacherId);
-    console.log('Teacher registration:', { ...formData, teacherId: newTeacherId });
+    const newSchoolId = generateSchoolId();
+    setSchoolId(newSchoolId);
+    console.log('School registration:', { ...formData, schoolId: newSchoolId });
   };
 
   return (
@@ -55,133 +57,80 @@ const SignUp = () => {
             </Link>
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-foreground">Teacher Registration</h2>
-            <p className="text-muted-foreground">Join our teaching community</p>
+            <h2 className="text-2xl font-bold text-foreground">School Registration</h2>
+            <p className="text-muted-foreground">Register your educational institution</p>
           </div>
         </CardHeader>
         
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="firstName">First Name</Label>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
-                  <Input
-                    id="firstName"
-                    name="firstName"
-                    type="text"
-                    placeholder="First name"
-                    value={formData.firstName}
-                    onChange={handleInputChange}
-                    className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="lastName">Last Name</Label>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
-                  <Input
-                    id="lastName"
-                    name="lastName"
-                    type="text"
-                    placeholder="Last name"
-                    value={formData.lastName}
-                    onChange={handleInputChange}
-                    className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-
             <div className="space-y-2">
-              <Label htmlFor="email">Email Address</Label>
+              <Label htmlFor="schoolName">School/Institution Name</Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
                 <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="your@email.com"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="phone">Phone Number</Label>
-              <div className="relative">
-                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  placeholder="+91 98765 43210"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="qualification">Qualification</Label>
-                <div className="relative">
-                  <GraduationCap className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
-                  <Input
-                    id="qualification"
-                    name="qualification"
-                    type="text"
-                    placeholder="B.Ed, M.Ed, etc."
-                    value={formData.qualification}
-                    onChange={handleInputChange}
-                    className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="experience">Experience</Label>
-                <div className="relative">
-                  <BookOpen className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
-                  <Input
-                    id="experience"
-                    name="experience"
-                    type="text"
-                    placeholder="5 years"
-                    value={formData.experience}
-                    onChange={handleInputChange}
-                    className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="subjects">Subjects</Label>
-              <div className="relative">
-                <BookOpen className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
-                <Input
-                  id="subjects"
-                  name="subjects"
+                  id="schoolName"
+                  name="schoolName"
                   type="text"
-                  placeholder="Mathematics, Physics, Chemistry"
-                  value={formData.subjects}
+                  placeholder="School name"
+                  value={formData.schoolName}
                   onChange={handleInputChange}
                   className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
                   required
                 />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="principalName">Principal/Director Name</Label>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                <Input
+                  id="principalName"
+                  name="principalName"
+                  type="text"
+                  placeholder="Principal name"
+                  value={formData.principalName}
+                  onChange={handleInputChange}
+                  className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="email">Email Address</Label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="school@email.com"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="phone">Phone Number</Label>
+                <div className="relative">
+                  <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    placeholder="+91 98765 43210"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
+                    required
+                  />
+                </div>
               </div>
             </div>
 
@@ -198,6 +147,94 @@ const SignUp = () => {
                   onChange={handleInputChange}
                   className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
                   required
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="city">City</Label>
+                <div className="relative">
+                  <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                  <Input
+                    id="city"
+                    name="city"
+                    type="text"
+                    placeholder="City"
+                    value={formData.city}
+                    onChange={handleInputChange}
+                    className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="state">State</Label>
+                <div className="relative">
+                  <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                  <Input
+                    id="state"
+                    name="state"
+                    type="text"
+                    placeholder="State"
+                    value={formData.state}
+                    onChange={handleInputChange}
+                    className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="board">Board</Label>
+                <div className="relative">
+                  <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                  <Input
+                    id="board"
+                    name="board"
+                    type="text"
+                    placeholder="CBSE, ICSE, State Board"
+                    value={formData.board}
+                    onChange={handleInputChange}
+                    className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="establishedYear">Established Year</Label>
+                <div className="relative">
+                  <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                  <Input
+                    id="establishedYear"
+                    name="establishedYear"
+                    type="number"
+                    placeholder="1990"
+                    value={formData.establishedYear}
+                    onChange={handleInputChange}
+                    className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="website">Website (Optional)</Label>
+              <div className="relative">
+                <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                <Input
+                  id="website"
+                  name="website"
+                  type="url"
+                  placeholder="https://school.com"
+                  value={formData.website}
+                  onChange={handleInputChange}
+                  className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
                 />
               </div>
             </div>
@@ -267,13 +304,13 @@ const SignUp = () => {
               type="submit" 
               className="w-full bg-primary hover:bg-primary/90 h-11 text-primary-foreground font-semibold transition-all duration-300"
             >
-              Create Teacher Account
+              Create School Account
             </Button>
 
-            {teacherId && (
+            {schoolId && (
               <div className="mt-4 p-3 bg-green-100 border border-green-300 rounded-md">
                 <p className="text-green-800 font-semibold">Registration Successful!</p>
-                <p className="text-green-700">Your Teacher ID: <span className="font-bold">{teacherId}</span></p>
+                <p className="text-green-700">Your School ID: <span className="font-bold">{schoolId}</span></p>
               </div>
             )}
 
@@ -285,8 +322,8 @@ const SignUp = () => {
                 </Link>
               </p>
               <p className="text-muted-foreground mt-2">
-                Are you a school or institution?{' '}
-                <Link to="/signup-school" className="text-primary hover:underline font-semibold">
+                Are you a teacher?{' '}
+                <Link to="/signup" className="text-primary hover:underline font-semibold">
                   Register here
                 </Link>
               </p>
@@ -298,4 +335,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpSchool;

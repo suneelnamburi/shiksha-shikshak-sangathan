@@ -24,22 +24,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
   return (
     <section id="home" className="relative bg-[#1A252F] overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: 'url(/lovable-uploads/e2ce2150-6ea2-447a-948f-bd62a06f3287.png)'
-        }}
-      >
-        {/* Dark overlay for better text visibility */}
-        <div className="absolute inset-0 bg-[#1A252F]/70"></div>
-      </div>
-
-      {/* Main Content Container - Reduced height */}
+      {/* Main Content Container */}
       <div className="container mx-auto px-4 relative flex items-center py-16 z-10">
         <div className="max-w-4xl mx-auto text-center w-full">
           
-          {/* Content Section - Reduced spacing */}
+          {/* Content Section */}
           <div className="space-y-8">
             
             {/* Header Content */}

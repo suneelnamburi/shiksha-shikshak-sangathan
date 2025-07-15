@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import { Search, BookOpen, Users, Award, MapPin, Clock, Heart, Filter } from 'lucide-react';
+import { Search, BookOpen, Users, Award, MapPin, Clock, Heart, Filter, Phone, Mail, Globe, Shield, Zap, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -98,8 +99,26 @@ const Index = () => {
     }
   ];
 
+  const services = [
+    {
+      icon: Shield,
+      title: 'Verified Schools',
+      description: 'All educational institutions are thoroughly verified and authenticated'
+    },
+    {
+      icon: Target,
+      title: 'Perfect Matching',
+      description: 'Advanced algorithm matches teachers with suitable positions'
+    },
+    {
+      icon: Zap,
+      title: 'Quick Hiring',
+      description: 'Streamlined process ensures faster recruitment and onboarding'
+    }
+  ];
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="bg-[#1A252F]/80 backdrop-blur-sm text-white sticky top-0 z-50 shadow-lg">
         <div className="container mx-auto px-4 py-4">
@@ -115,7 +134,6 @@ const Index = () => {
               <a href="#home" className="hover:text-gray-300 transition-colors">Home</a>
               <a href="#about" className="hover:text-gray-300 transition-colors">About</a>
               <a href="#jobs" className="hover:text-gray-300 transition-colors">Jobs</a>
-              <a href="#candidates" className="hover:text-gray-300 transition-colors">Candidates</a>
               <a href="#services" className="hover:text-gray-300 transition-colors">Services</a>
               <a href="#contact" className="hover:text-gray-300 transition-colors">Contact Us</a>
             </nav>
@@ -149,6 +167,67 @@ const Index = () => {
         {/* Teacher Gallery Section */}
         <TeacherGallery />
 
+        {/* About Section */}
+        <section id="about" className="py-16 bg-white/80 backdrop-blur-sm">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-black mb-4">About शिक्षक Portal</h2>
+              <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+                शिक्षक Portal is India's leading educational job platform connecting talented teachers with reputable schools and institutions. We bridge the gap between quality education and skilled educators.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+              <div>
+                <h3 className="text-2xl font-bold text-black mb-6">Our Mission</h3>
+                <p className="text-gray-600 mb-6">
+                  To revolutionize the education sector by providing a comprehensive platform that makes teacher recruitment efficient, transparent, and accessible to all.
+                </p>
+                <ul className="space-y-3 text-gray-600">
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-[#D32F2F] rounded-full mr-3"></div>
+                    Connecting 10,000+ teachers with opportunities
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-[#D32F2F] rounded-full mr-3"></div>
+                    Partnering with 500+ educational institutions
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-[#D32F2F] rounded-full mr-3"></div>
+                    Serving across all major cities in India
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-gradient-to-br from-[#D32F2F] to-[#B71C1C] rounded-2xl p-8 text-white">
+                <h3 className="text-2xl font-bold mb-4">Why Choose Us?</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start">
+                    <Shield className="mr-3 mt-1 text-white" size={20} />
+                    <div>
+                      <h4 className="font-semibold">Verified Institutions</h4>
+                      <p className="text-sm opacity-90">All schools are thoroughly verified</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <Target className="mr-3 mt-1 text-white" size={20} />
+                    <div>
+                      <h4 className="font-semibold">Perfect Matching</h4>
+                      <p className="text-sm opacity-90">AI-powered job matching system</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <Zap className="mr-3 mt-1 text-white" size={20} />
+                    <div>
+                      <h4 className="font-semibold">Quick Process</h4>
+                      <p className="text-sm opacity-90">Fast and efficient hiring process</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Categories Section */}
         <section id="categories" className="py-16 bg-white/80 backdrop-blur-sm">
           <div className="container mx-auto px-4">
@@ -165,8 +244,34 @@ const Index = () => {
           </div>
         </section>
 
+        {/* Services Section */}
+        <section id="services" className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-black mb-4">Our Services</h2>
+              <p className="text-gray-600 text-lg">Comprehensive solutions for educational recruitment</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {services.map((service, index) => (
+                <Card key={index} className="border-2 border-border hover:shadow-lg transition-shadow">
+                  <CardHeader className="text-center">
+                    <div className="w-16 h-16 bg-[#D32F2F] rounded-full flex items-center justify-center mx-auto mb-4">
+                      <service.icon className="text-white" size={24} />
+                    </div>
+                    <h3 className="text-xl font-bold text-black">{service.title}</h3>
+                  </CardHeader>
+                  <CardContent className="text-center">
+                    <p className="text-gray-600">{service.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Jobs Section */}
-        <section id="jobs" className="py-16">
+        <section id="jobs" className="py-16 bg-background">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-black mb-4">Teaching Jobs You May Be Interested In</h2>
@@ -243,6 +348,60 @@ const Index = () => {
               {jobs.map((job) => (
                 <JobCard key={job.id} {...job} />
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="py-16 bg-[#1A252F] text-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-4">Contact Us</h2>
+              <p className="text-gray-300 text-lg">Get in touch with our team for any queries or support</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div>
+                <h3 className="text-2xl font-bold mb-6">Get In Touch</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center">
+                    <Phone className="mr-4 text-[#D32F2F]" size={20} />
+                    <span>+91 98765 43210</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Mail className="mr-4 text-[#D32F2F]" size={20} />
+                    <span>info@shikshakportal.com</span>
+                  </div>
+                  <div className="flex items-center">
+                    <MapPin className="mr-4 text-[#D32F2F]" size={20} />
+                    <span>123 Education Street, New Delhi, India</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
+                <form className="space-y-4">
+                  <Input
+                    type="text"
+                    placeholder="Your Name"
+                    className="bg-white/10 border-white/20 text-white placeholder:text-white/70"
+                  />
+                  <Input
+                    type="email"
+                    placeholder="Your Email"
+                    className="bg-white/10 border-white/20 text-white placeholder:text-white/70"
+                  />
+                  <textarea
+                    placeholder="Your Message"
+                    rows={4}
+                    className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-md text-white placeholder:text-white/70 focus:outline-none focus:ring-2 focus:ring-[#D32F2F]"
+                  />
+                  <Button className="bg-[#D32F2F] hover:bg-[#B71C1C] w-full">
+                    Send Message
+                  </Button>
+                </form>
+              </div>
             </div>
           </div>
         </section>

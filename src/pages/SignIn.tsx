@@ -19,14 +19,16 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-background">
+    <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <Card className="w-full max-w-md shadow-lg bg-card border-2 border-border">
         <CardHeader className="text-center space-y-4 pb-8">
           <div className="flex items-center justify-center space-x-2">
-            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">@</span>
-            </div>
-            <h1 className="text-2xl font-bold text-foreground">शिक्षक Portal</h1>
+            <Link to="/" className="flex items-center space-x-2">
+              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-lg">@</span>
+              </div>
+              <h1 className="text-2xl font-bold text-foreground">शिक्षक Portal</h1>
+            </Link>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground">Welcome Back</h2>
@@ -102,6 +104,12 @@ const SignIn = () => {
               <p className="text-muted-foreground">
                 Don't have an account?{' '}
                 <Link to="/signup" className="text-primary hover:underline font-semibold">
+                  Sign up as Teacher
+                </Link>
+              </p>
+              <p className="text-muted-foreground mt-2">
+                Are you a school or institution?{' '}
+                <Link to="/signup-school" className="text-primary hover:underline font-semibold">
                   Sign up here
                 </Link>
               </p>
