@@ -1,121 +1,214 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Link } from 'react-router-dom';
-import { Eye, EyeOff, Mail, Lock, User, Phone, Home, Building, MapPin, Globe, ArrowLeft } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, Building, Phone, MapPin, Calendar, Users, ArrowLeft, Shield } from 'lucide-react';
 
 const SignUpSchool = () => {
   const [formData, setFormData] = useState({
     schoolName: '',
-    principalName: '',
     email: '',
-    phone: '',
     password: '',
     confirmPassword: '',
+    phone: '',
     address: '',
     city: '',
     state: '',
+    pincode: '',
     board: '',
+    established: '',
+    totalStudents: '',
+    totalTeachers: '',
     website: '',
-    establishedYear: ''
+    description: '',
+    registrationId: ''
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [schoolId, setSchoolId] = useState('');
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
 
-  const generateSchoolId = () => {
-    const timestamp = Date.now().toString(36);
-    const randomStr = Math.random().toString(36).substr(2, 5);
-    return `SCH_${timestamp}_${randomStr}`.toUpperCase();
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleSelectChange = (name: string, value: string) => {
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleVerifyRegistration = () => {
+    if (!formData.registrationId) {
+      alert('Please enter your School Registration ID');
+      return;
+    }
+    
+    setIsVerifying(true);
+    // Simulate verification process
+    setTimeout(() => {
+      setIsVerifying(false);
+      setIsVerified(true);
+      alert('School Registration ID verified successfully!');
+    }, 2000);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newSchoolId = generateSchoolId();
-    setSchoolId(newSchoolId);
-    console.log('School registration:', { ...formData, schoolId: newSchoolId });
+    if (!isVerified) {
+      alert('Please verify your School Registration ID first');
+      return;
+    }
+    if (formData.password !== formData.confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+    console.log('School registration:', formData);
+    // Handle registration logic here
   };
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4 py-8">
-      <Card className="w-full max-w-2xl shadow-2xl bg-card border-2 border-border">
+      {/* Back to Home Button */}
+      <Link 
+        to="/" 
+        className="absolute top-4 left-4 flex items-center text-primary hover:text-primary/80 transition-colors"
+      >
+        <ArrowLeft className="mr-2" size={20} />
+        Back to Home
+      </Link>
+
+      <Card className="w-full max-w-3xl shadow-lg bg-card border-2 border-border">
         <CardHeader className="text-center space-y-4 pb-8">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center text-primary hover:text-primary/80 transition-colors">
-              <ArrowLeft className="mr-2" size={20} />
-              Back to Home
-            </Link>
-            <div className="flex items-center space-x-2">
+          <div className="flex items-center justify-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2">
               <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
                 <span className="text-primary-foreground font-bold text-lg">@</span>
               </div>
               <h1 className="text-2xl font-bold text-foreground">शिक्षक Portal</h1>
-            </div>
+            </Link>
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-foreground">School Registration</h2>
-            <p className="text-muted-foreground">Register your educational institution</p>
+            <h2 className="text-2xl font-bold text-foreground">Register Your School</h2>
+            <p className="text-muted-foreground">Join our network of educational institutions</p>
           </div>
         </CardHeader>
         
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Registration ID and Verification */}
             <div className="space-y-2">
-              <Label htmlFor="schoolName">School/Institution Name</Label>
-              <div className="relative">
-                <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
-                <Input
-                  id="schoolName"
-                  name="schoolName"
-                  type="text"
-                  placeholder="School name"
-                  value={formData.schoolName}
-                  onChange={handleInputChange}
-                  className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
-                  required
-                />
+              <Label htmlFor="registrationId">School Registration ID</Label>
+              <div className="flex gap-2">
+                <div className="relative flex-1">
+                  <Shield className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                  <Input
+                    id="registrationId"
+                    name="registrationId"
+                    type="text"
+                    placeholder="Enter your school registration ID"
+                    value={formData.registrationId}
+                    onChange={handleInputChange}
+                    className="pl-10"
+                    required
+                  />
+                </div>
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  onClick={handleVerifyRegistration}
+                  disabled={isVerifying || isVerified}
+                  className={isVerified ? 'bg-green-50 border-green-200 text-green-800' : ''}
+                >
+                  {isVerifying ? 'Verifying...' : isVerified ? 'Verified ✓' : 'Verify'}
+                </Button>
               </div>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="principalName">Principal/Director Name</Label>
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
-                <Input
-                  id="principalName"
-                  name="principalName"
-                  type="text"
-                  placeholder="Principal name"
-                  value={formData.principalName}
-                  onChange={handleInputChange}
-                  className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="email">Email Address</Label>
+                <Label htmlFor="schoolName">School Name</Label>
+                <div className="relative">
+                  <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                  <Input
+                    id="schoolName"
+                    name="schoolName"
+                    type="text"
+                    placeholder="Enter school name"
+                    value={formData.schoolName}
+                    onChange={handleInputChange}
+                    className="pl-10"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="email">Official Email</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
                   <Input
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="school@email.com"
+                    placeholder="admin@school.edu.in"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
+                    className="pl-10"
                     required
                   />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                  <Input
+                    id="password"
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Create a strong password"
+                    value={formData.password}
+                    onChange={handleInputChange}
+                    className="pl-10 pr-10"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  >
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                  <Input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type={showConfirmPassword ? "text" : "password"}
+                    placeholder="Confirm your password"
+                    value={formData.confirmPassword}
+                    onChange={handleInputChange}
+                    className="pl-10 pr-10"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  >
+                    {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
                 </div>
               </div>
 
@@ -130,204 +223,178 @@ const SignUpSchool = () => {
                     placeholder="+91 98765 43210"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
+                    className="pl-10"
                     required
                   />
                 </div>
               </div>
-            </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="address">Address</Label>
-              <div className="relative">
-                <Home className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+              <div className="space-y-2">
+                <Label htmlFor="board">Board Affiliation</Label>
+                <Select onValueChange={(value) => handleSelectChange('board', value)} required>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select board" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="cbse">CBSE</SelectItem>
+                    <SelectItem value="icse">ICSE</SelectItem>
+                    <SelectItem value="state">State Board</SelectItem>
+                    <SelectItem value="ib">IB</SelectItem>
+                    <SelectItem value="cambridge">Cambridge</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="established">Established Year</Label>
+                <div className="relative">
+                  <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                  <Input
+                    id="established"
+                    name="established"
+                    type="number"
+                    placeholder="e.g., 1995"
+                    value={formData.established}
+                    onChange={handleInputChange}
+                    className="pl-10"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="totalStudents">Total Students</Label>
+                <div className="relative">
+                  <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                  <Input
+                    id="totalStudents"
+                    name="totalStudents"
+                    type="number"
+                    placeholder="e.g., 500"
+                    value={formData.totalStudents}
+                    onChange={handleInputChange}
+                    className="pl-10"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="totalTeachers">Total Teachers</Label>
                 <Input
-                  id="address"
-                  name="address"
-                  type="text"
-                  placeholder="Full address"
-                  value={formData.address}
+                  id="totalTeachers"
+                  name="totalTeachers"
+                  type="number"
+                  placeholder="e.g., 50"
+                  value={formData.totalTeachers}
                   onChange={handleInputChange}
-                  className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
                   required
                 />
               </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="city">City</Label>
-                <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
-                  <Input
-                    id="city"
-                    name="city"
-                    type="text"
-                    placeholder="City"
-                    value={formData.city}
-                    onChange={handleInputChange}
-                    className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
-                    required
-                  />
-                </div>
-              </div>
 
               <div className="space-y-2">
-                <Label htmlFor="state">State</Label>
-                <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
-                  <Input
-                    id="state"
-                    name="state"
-                    type="text"
-                    placeholder="State"
-                    value={formData.state}
-                    onChange={handleInputChange}
-                    className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="board">Board</Label>
-                <div className="relative">
-                  <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
-                  <Input
-                    id="board"
-                    name="board"
-                    type="text"
-                    placeholder="CBSE, ICSE, State Board"
-                    value={formData.board}
-                    onChange={handleInputChange}
-                    className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="establishedYear">Established Year</Label>
-                <div className="relative">
-                  <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
-                  <Input
-                    id="establishedYear"
-                    name="establishedYear"
-                    type="number"
-                    placeholder="1990"
-                    value={formData.establishedYear}
-                    onChange={handleInputChange}
-                    className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="website">Website (Optional)</Label>
-              <div className="relative">
-                <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                <Label htmlFor="website">Website (Optional)</Label>
                 <Input
                   id="website"
                   name="website"
                   type="url"
-                  placeholder="https://school.com"
+                  placeholder="https://www.school.edu.in"
                   value={formData.website}
                   onChange={handleInputChange}
-                  className="pl-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
                 />
               </div>
-            </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+              <div className="space-y-2">
+                <Label htmlFor="city">City</Label>
                 <Input
-                  id="password"
-                  name="password"
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Create password"
-                  value={formData.password}
+                  id="city"
+                  name="city"
+                  type="text"
+                  placeholder="Enter city"
+                  value={formData.city}
                   onChange={handleInputChange}
-                  className="pl-10 pr-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
                   required
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                >
-                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                </button>
               </div>
-            </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Confirm Password</Label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+              <div className="space-y-2">
+                <Label htmlFor="state">State</Label>
                 <Input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type={showConfirmPassword ? "text" : "password"}
-                  placeholder="Confirm password"
-                  value={formData.confirmPassword}
+                  id="state"
+                  name="state"
+                  type="text"
+                  placeholder="Enter state"
+                  value={formData.state}
                   onChange={handleInputChange}
-                  className="pl-10 pr-10 h-11 border-2 border-border focus:border-primary focus:ring-primary"
                   required
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                >
-                  {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                </button>
               </div>
             </div>
 
-            <div className="flex items-start space-x-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="address">Address</Label>
+                <div className="relative">
+                  <MapPin className="absolute left-3 top-3 text-muted-foreground" size={18} />
+                  <Textarea
+                    id="address"
+                    name="address"
+                    placeholder="Enter complete address"
+                    value={formData.address}
+                    onChange={handleInputChange}
+                    className="pl-10"
+                    rows={3}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="description">School Description</Label>
+                <Textarea
+                  id="description"
+                  name="description"
+                  placeholder="Tell us about your school..."
+                  value={formData.description}
+                  onChange={handleInputChange}
+                  rows={3}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center space-x-2">
               <input
                 id="terms"
                 type="checkbox"
-                className="w-4 h-4 text-primary border-border rounded focus:ring-primary mt-1"
+                className="w-4 h-4 text-primary border-2 border-border rounded focus:ring-primary"
                 required
               />
               <Label htmlFor="terms" className="text-sm text-muted-foreground">
-                I agree to the <Link to="/terms" className="text-primary hover:underline">Terms of Service</Link> and{' '}
-                <Link to="/privacy" className="text-primary hover:underline">Privacy Policy</Link>
+                I agree to the{' '}
+                <Link to="/terms" className="text-primary hover:underline">
+                  Terms of Service
+                </Link>{' '}
+                and{' '}
+                <Link to="/privacy" className="text-primary hover:underline">
+                  Privacy Policy
+                </Link>
               </Label>
             </div>
 
             <Button 
               type="submit" 
-              className="w-full bg-primary hover:bg-primary/90 h-11 text-primary-foreground font-semibold transition-all duration-300"
+              className="w-full bg-primary hover:bg-primary/90 h-12 text-primary-foreground font-semibold"
+              disabled={!isVerified}
             >
-              Create School Account
+              Register School
             </Button>
-
-            {schoolId && (
-              <div className="mt-4 p-3 bg-green-100 border border-green-300 rounded-md">
-                <p className="text-green-800 font-semibold">Registration Successful!</p>
-                <p className="text-green-700">Your School ID: <span className="font-bold">{schoolId}</span></p>
-              </div>
-            )}
 
             <div className="text-center">
               <p className="text-muted-foreground">
                 Already have an account?{' '}
                 <Link to="/signin" className="text-primary hover:underline font-semibold">
-                  Sign in here
-                </Link>
-              </p>
-              <p className="text-muted-foreground mt-2">
-                Are you a teacher?{' '}
-                <Link to="/signup" className="text-primary hover:underline font-semibold">
-                  Register here
+                  Sign in
                 </Link>
               </p>
             </div>
