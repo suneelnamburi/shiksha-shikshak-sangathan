@@ -92,7 +92,7 @@ const JobRequirementCard: React.FC<JobRequirementCardProps> = ({
         <div className="space-y-3">
           <div className="bg-muted/50 rounded-lg p-3">
             <h4 className="font-semibold text-card-foreground mb-2 flex items-center">
-              <CheckCircle size={16} className="text-brand-primary mr-2" />
+              <CheckCircle size={16} className="text-brand-success mr-2" />
               Requirements:
             </h4>
             <ul className="space-y-1">
