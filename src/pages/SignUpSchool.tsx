@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -8,10 +7,13 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Link } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, Building, Phone, MapPin, Calendar, Users, ArrowLeft } from 'lucide-react';
+import DocumentUpload from '@/components/DocumentUpload';
 
 const SignUpSchool = () => {
   const [formData, setFormData] = useState({
     schoolName: '',
+    schoolId: '',
+    registrationNumber: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -27,6 +29,7 @@ const SignUpSchool = () => {
     website: '',
     description: ''
   });
+  const [documents, setDocuments] = useState<File[]>([]);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
@@ -39,6 +42,10 @@ const SignUpSchool = () => {
 
   const handleSelectChange = (name: string, value: string) => {
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleDocumentsChange = (newDocuments: File[]) => {
+    setDocuments(newDocuments);
   };
 
   const generateUniqueId = () => {
@@ -59,11 +66,24 @@ const SignUpSchool = () => {
     const id = generateUniqueId();
     setUniqueId(id);
     
-    console.log('School registration:', { ...formData, uniqueId: id });
+    console.log('School registration:', {
+      ...formData,
+      uniqueId: id,
+      documents: documents.map(doc => ({ name: doc.name, size: doc.size, type: doc.type })),
+      timestamp: new Date().toISOString()
+    });
     
     // Show success message
     setIsRegistered(true);
   };
+
+  const requiredDocuments = [
+    'School Registration Certificate',
+    'NOC from Education Department',
+    'Affiliation Certificate (CBSE/ICSE/State Board)',
+    'Principal ID Proof',
+    'School Building Ownership/Lease Documents'
+  ];
 
   if (isRegistered) {
     return (
@@ -100,7 +120,6 @@ const SignUpSchool = () => {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4 py-8">
-      {/* Back to Home Button */}
       <Link 
         to="/" 
         className="absolute top-4 left-4 flex items-center text-primary hover:text-primary/80 transition-colors"
@@ -109,7 +128,7 @@ const SignUpSchool = () => {
         Back to Home
       </Link>
 
-      <Card className="w-full max-w-3xl shadow-lg bg-card border-2 border-border">
+      <Card className="w-full max-w-4xl shadow-lg bg-card border-2 border-border">
         <CardHeader className="text-center space-y-4 pb-8">
           <div className="flex items-center justify-center space-x-2">
             <Link to="/" className="flex items-center space-x-2">
@@ -143,6 +162,36 @@ const SignUpSchool = () => {
                     required
                   />
                 </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="schoolId">School ID/Code</Label>
+                <div className="relative">
+                  <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                  <Input
+                    id="schoolId"
+                    name="schoolId"
+                    type="text"
+                    placeholder="Enter school ID"
+                    value={formData.schoolId}
+                    onChange={handleInputChange}
+                    className="pl-10"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="registrationNumber">Registration Number</Label>
+                <Input
+                  id="registrationNumber"
+                  name="registrationNumber"
+                  type="text"
+                  placeholder="Enter official registration number"
+                  value={formData.registrationNumber}
+                  onChange={handleInputChange}
+                  required
+                />
               </div>
 
               <div className="space-y-2">
@@ -359,6 +408,13 @@ const SignUpSchool = () => {
                   required
                 />
               </div>
+            </div>
+
+            <div className="space-y-4">
+              <DocumentUpload
+                onDocumentsChange={handleDocumentsChange}
+                requiredDocuments={requiredDocuments}
+              />
             </div>
 
             <div className="flex items-center space-x-2">

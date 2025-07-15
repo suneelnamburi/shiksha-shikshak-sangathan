@@ -6,14 +6,16 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Link } from 'react-router-dom';
-import { Eye, EyeOff, Mail, Lock, User, Phone, MapPin, GraduationCap, BookOpen, ArrowLeft } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, User, Phone, MapPin, GraduationCap, BookOpen, ArrowLeft, Building } from 'lucide-react';
 import UserTypeSelection from '@/components/UserTypeSelection';
 import RegistrationSuccess from '@/components/RegistrationSuccess';
+import DocumentUpload from '@/components/DocumentUpload';
 
 const SignUp = () => {
   const [userType, setUserType] = useState<'teacher' | 'school' | 'institution' | null>(null);
   const [isRegistered, setIsRegistered] = useState(false);
   const [uniqueId, setUniqueId] = useState('');
+  const [documents, setDocuments] = useState<File[]>([]);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -24,7 +26,9 @@ const SignUp = () => {
     qualification: '',
     experience: '',
     subjects: '',
-    about: ''
+    about: '',
+    institutionId: '',
+    registrationNumber: ''
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -45,6 +49,10 @@ const SignUp = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleDocumentsChange = (newDocuments: File[]) => {
+    setDocuments(newDocuments);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
@@ -56,12 +64,42 @@ const SignUp = () => {
     const id = generateUniqueId(userType!);
     setUniqueId(id);
     
+    // Log registration data including documents
+    console.log('Registration Data:', {
+      ...formData,
+      userType,
+      uniqueId: id,
+      documents: documents.map(doc => ({ name: doc.name, size: doc.size, type: doc.type })),
+      timestamp: new Date().toISOString()
+    });
+    
     // Simulate sending email
     console.log('Sending login details to:', formData.email);
-    console.log('User registration:', { ...formData, userType, uniqueId: id });
     
     // Show success screen
     setIsRegistered(true);
+  };
+
+  const getRequiredDocuments = () => {
+    if (userType === 'school') {
+      return [
+        'School Registration Certificate',
+        'NOC from Education Department',
+        'Affiliation Certificate (CBSE/ICSE/State Board)',
+        'Principal ID Proof',
+        'School Building Ownership/Lease Documents'
+      ];
+    } else if (userType === 'institution') {
+      return [
+        'Institution Registration Certificate',
+        'Trust/Society Registration Documents',
+        'NOC from Regulatory Authority',
+        'Director/Chairman ID Proof',
+        'Infrastructure Documents',
+        'Accreditation Certificates (if any)'
+      ];
+    }
+    return [];
   };
 
   if (isRegistered) {
@@ -110,7 +148,6 @@ const SignUp = () => {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4 py-8">
-      {/* Back to Home Button */}
       <Link 
         to="/" 
         className="absolute top-4 left-4 flex items-center text-primary hover:text-primary/80 transition-colors"
@@ -119,7 +156,7 @@ const SignUp = () => {
         Back to Home
       </Link>
 
-      <Card className="w-full max-w-2xl shadow-lg bg-card border-2 border-border">
+      <Card className="w-full max-w-4xl shadow-lg bg-card border-2 border-border">
         <CardHeader className="text-center space-y-4 pb-8">
           <div className="flex items-center justify-center space-x-2">
             <Link to="/" className="flex items-center space-x-2">
@@ -143,14 +180,20 @@ const SignUp = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <Label htmlFor="fullName">Full Name</Label>
+                <Label htmlFor="fullName">
+                  {userType === 'teacher' ? 'Full Name' : userType === 'school' ? 'School Name' : 'Institution Name'}
+                </Label>
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                  {userType === 'teacher' ? (
+                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                  ) : (
+                    <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                  )}
                   <Input
                     id="fullName"
                     name="fullName"
                     type="text"
-                    placeholder="Enter your full name"
+                    placeholder={userType === 'teacher' ? 'Enter your full name' : userType === 'school' ? 'Enter school name' : 'Enter institution name'}
                     value={formData.fullName}
                     onChange={handleInputChange}
                     className="pl-10"
@@ -158,6 +201,42 @@ const SignUp = () => {
                   />
                 </div>
               </div>
+
+              {(userType === 'school' || userType === 'institution') && (
+                <div className="space-y-2">
+                  <Label htmlFor="institutionId">
+                    {userType === 'school' ? 'School ID/Code' : 'Institution ID/Code'}
+                  </Label>
+                  <div className="relative">
+                    <Building className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                    <Input
+                      id="institutionId"
+                      name="institutionId"
+                      type="text"
+                      placeholder={userType === 'school' ? 'Enter school ID' : 'Enter institution ID'}
+                      value={formData.institutionId}
+                      onChange={handleInputChange}
+                      className="pl-10"
+                      required
+                    />
+                  </div>
+                </div>
+              )}
+
+              {(userType === 'school' || userType === 'institution') && (
+                <div className="space-y-2">
+                  <Label htmlFor="registrationNumber">Registration Number</Label>
+                  <Input
+                    id="registrationNumber"
+                    name="registrationNumber"
+                    type="text"
+                    placeholder="Enter official registration number"
+                    value={formData.registrationNumber}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+              )}
 
               <div className="space-y-2">
                 <Label htmlFor="email">Email Address</Label>
@@ -324,6 +403,15 @@ const SignUp = () => {
                 required
               />
             </div>
+
+            {(userType === 'school' || userType === 'institution') && (
+              <div className="space-y-4">
+                <DocumentUpload
+                  onDocumentsChange={handleDocumentsChange}
+                  requiredDocuments={getRequiredDocuments()}
+                />
+              </div>
+            )}
 
             <div className="flex items-center space-x-2">
               <input
