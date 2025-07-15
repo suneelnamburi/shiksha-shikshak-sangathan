@@ -1,9 +1,10 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { MapPin, Clock, Phone, Mail, AlertCircle, CheckCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { useNavigate } from 'react-router-dom';
 
 interface JobRequirementCardProps {
   id: number;
@@ -19,6 +20,7 @@ interface JobRequirementCardProps {
 }
 
 const JobRequirementCard: React.FC<JobRequirementCardProps> = ({
+  id,
   title,
   school,
   location,
@@ -29,10 +31,28 @@ const JobRequirementCard: React.FC<JobRequirementCardProps> = ({
   contactPhone,
   timePosted
 }) => {
+  const navigate = useNavigate();
+  const [isApplying, setIsApplying] = useState(false);
+
   const getUrgencyColor = (urgency: string) => {
     if (urgency === 'ASAP' || urgency === 'Immediate') return 'bg-red-100 text-red-800 border-red-200';
     if (urgency.includes('15 days')) return 'bg-orange-100 text-orange-800 border-orange-200';
     return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+  };
+
+  const handleApplyNow = () => {
+    setIsApplying(true);
+    // Simulate notification to school/institution
+    setTimeout(() => {
+      console.log(`Notification sent to ${school} for ${title} application`);
+      setIsApplying(false);
+      navigate(`/apply-now/${id}`);
+    }, 1000);
+  };
+
+  const handleContact = () => {
+    // Open email client or show contact modal
+    window.location.href = `mailto:${contactEmail}?subject=Inquiry about ${title} position`;
   };
 
   return (
@@ -109,12 +129,17 @@ const JobRequirementCard: React.FC<JobRequirementCardProps> = ({
 
         <div className="pt-4 border-t border-gray-100">
           <div className="flex space-x-3">
-            <Button className="flex-1 bg-[#D32F2F] hover:bg-[#B71C1C] transition-all duration-300 transform hover:scale-105">
-              Apply Now
+            <Button 
+              className="flex-1 bg-[#D32F2F] hover:bg-[#B71C1C] transition-all duration-300 transform hover:scale-105"
+              onClick={handleApplyNow}
+              disabled={isApplying}
+            >
+              {isApplying ? 'Applying...' : 'Apply Now'}
             </Button>
             <Button 
               variant="outline" 
               className="px-6 border-[#D32F2F] text-[#D32F2F] hover:bg-[#D32F2F] hover:text-white transition-all duration-300"
+              onClick={handleContact}
             >
               Contact
             </Button>

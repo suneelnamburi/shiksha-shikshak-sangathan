@@ -7,8 +7,13 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Link } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, User, Phone, MapPin, GraduationCap, BookOpen, ArrowLeft, Shield } from 'lucide-react';
+import UserTypeSelection from '@/components/UserTypeSelection';
+import RegistrationSuccess from '@/components/RegistrationSuccess';
 
 const SignUp = () => {
+  const [userType, setUserType] = useState<'teacher' | 'school' | 'institution' | null>(null);
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [uniqueId, setUniqueId] = useState('');
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -26,6 +31,17 @@ const SignUp = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
+
+  const generateUniqueId = (type: 'teacher' | 'school' | 'institution') => {
+    const prefix = type === 'teacher' ? 'TCH' : type === 'school' ? 'SCH' : 'INS';
+    const randomNum = Math.floor(Math.random() * 900000) + 100000;
+    const timestamp = Date.now().toString().slice(-4);
+    return `${prefix}${randomNum}${timestamp}`;
+  };
+
+  const handleUserTypeSelect = (type: 'teacher' | 'school' | 'institution') => {
+    setUserType(type);
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -57,9 +73,62 @@ const SignUp = () => {
       alert('Passwords do not match');
       return;
     }
-    console.log('Teacher registration:', formData);
-    // Handle registration logic here
+    
+    // Generate unique ID
+    const id = generateUniqueId(userType!);
+    setUniqueId(id);
+    
+    // Simulate sending email
+    console.log('Sending login details to:', formData.email);
+    console.log('User registration:', { ...formData, userType, uniqueId: id });
+    
+    // Show success screen
+    setIsRegistered(true);
   };
+
+  if (isRegistered) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center px-4 py-8">
+        <RegistrationSuccess 
+          userType={userType!}
+          uniqueId={uniqueId}
+          email={formData.email}
+          name={formData.fullName}
+        />
+      </div>
+    );
+  }
+
+  if (!userType) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center px-4 py-8">
+        <Link 
+          to="/" 
+          className="absolute top-4 left-4 flex items-center text-primary hover:text-primary/80 transition-colors"
+        >
+          <ArrowLeft className="mr-2" size={20} />
+          Back to Home
+        </Link>
+
+        <Card className="w-full max-w-4xl shadow-lg bg-card border-2 border-border">
+          <CardHeader className="text-center space-y-4 pb-8">
+            <div className="flex items-center justify-center space-x-2">
+              <Link to="/" className="flex items-center space-x-2">
+                <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                  <span className="text-primary-foreground font-bold text-lg">@</span>
+                </div>
+                <h1 className="text-2xl font-bold text-foreground">शिक्षक Portal</h1>
+              </Link>
+            </div>
+          </CardHeader>
+          
+          <CardContent>
+            <UserTypeSelection onSelectType={handleUserTypeSelect} />
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4 py-8">
@@ -83,8 +152,12 @@ const SignUp = () => {
             </Link>
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-foreground">Create Teacher Account</h2>
-            <p className="text-muted-foreground">Join our community of educators</p>
+            <h2 className="text-2xl font-bold text-foreground">
+              Create {userType === 'teacher' ? 'Teacher' : userType === 'school' ? 'School' : 'Institution'} Account
+            </h2>
+            <p className="text-muted-foreground">
+              {userType === 'teacher' ? 'Join our community of educators' : 'Join our network of educational institutions'}
+            </p>
           </div>
         </CardHeader>
         
@@ -92,7 +165,9 @@ const SignUp = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Registration ID and Verification */}
             <div className="space-y-2">
-              <Label htmlFor="registrationId">Teacher Registration ID</Label>
+              <Label htmlFor="registrationId">
+                {userType === 'teacher' ? 'Teacher' : userType === 'school' ? 'School' : 'Institution'} Registration ID
+              </Label>
               <div className="flex gap-2">
                 <div className="relative flex-1">
                   <Shield className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
@@ -100,7 +175,7 @@ const SignUp = () => {
                     id="registrationId"
                     name="registrationId"
                     type="text"
-                    placeholder="Enter your teacher registration ID"
+                    placeholder={`Enter your ${userType} registration ID`}
                     value={formData.registrationId}
                     onChange={handleInputChange}
                     className="pl-10"
@@ -236,60 +311,66 @@ const SignUp = () => {
                 </div>
               </div>
 
+              {userType === 'teacher' && (
+                <>
+                  <div className="space-y-2">
+                    <Label htmlFor="qualification">Qualification</Label>
+                    <div className="relative">
+                      <GraduationCap className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                      <Input
+                        id="qualification"
+                        name="qualification"
+                        type="text"
+                        placeholder="e.g., M.A. Mathematics, B.Ed"
+                        value={formData.qualification}
+                        onChange={handleInputChange}
+                        className="pl-10"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="experience">Experience</Label>
+                    <Input
+                      id="experience"
+                      name="experience"
+                      type="text"
+                      placeholder="e.g., 5 years"
+                      value={formData.experience}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                </>
+              )}
+            </div>
+
+            {userType === 'teacher' && (
               <div className="space-y-2">
-                <Label htmlFor="qualification">Qualification</Label>
+                <Label htmlFor="subjects">Subjects</Label>
                 <div className="relative">
-                  <GraduationCap className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+                  <BookOpen className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
                   <Input
-                    id="qualification"
-                    name="qualification"
+                    id="subjects"
+                    name="subjects"
                     type="text"
-                    placeholder="e.g., M.A. Mathematics, B.Ed"
-                    value={formData.qualification}
+                    placeholder="e.g., Mathematics, Physics, Chemistry"
+                    value={formData.subjects}
                     onChange={handleInputChange}
                     className="pl-10"
                     required
                   />
                 </div>
               </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="experience">Experience</Label>
-                <Input
-                  id="experience"
-                  name="experience"
-                  type="text"
-                  placeholder="e.g., 5 years"
-                  value={formData.experience}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-            </div>
+            )}
 
             <div className="space-y-2">
-              <Label htmlFor="subjects">Subjects</Label>
-              <div className="relative">
-                <BookOpen className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
-                <Input
-                  id="subjects"
-                  name="subjects"
-                  type="text"
-                  placeholder="e.g., Mathematics, Physics, Chemistry"
-                  value={formData.subjects}
-                  onChange={handleInputChange}
-                  className="pl-10"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="about">About Yourself</Label>
+              <Label htmlFor="about">About {userType === 'teacher' ? 'Yourself' : 'Your Institution'}</Label>
               <Textarea
                 id="about"
                 name="about"
-                placeholder="Tell us about your teaching experience and philosophy..."
+                placeholder={userType === 'teacher' ? 'Tell us about your teaching experience and philosophy...' : 'Tell us about your institution...'}
                 value={formData.about}
                 onChange={handleInputChange}
                 rows={3}

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Search, BookOpen, Users, Award, MapPin, Clock, Heart, Filter, Phone, Mail, Globe, Shield, Zap, Target, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -328,6 +329,84 @@ const Index = () => {
               <h2 className="text-4xl font-bold text-black mb-4">Urgent Job Requirements</h2>
               <p className="text-gray-600 text-lg">Schools actively seeking qualified teachers</p>
             </div>
+
+            {/* Filters */}
+            <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-6 mb-8">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-semibold flex items-center">
+                  <Filter className="mr-2 text-[#D32F2F]" size={20} />
+                  Filter Requirements
+                </h3>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                <Select>
+                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                    <SelectValue placeholder="Subject" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+                    <SelectItem value="mathematics">Mathematics</SelectItem>
+                    <SelectItem value="english">English</SelectItem>
+                    <SelectItem value="science">Science</SelectItem>
+                    <SelectItem value="social">Social Studies</SelectItem>
+                    <SelectItem value="hindi">Hindi</SelectItem>
+                    <SelectItem value="computer">Computer Science</SelectItem>
+                  </SelectContent>
+                </Select>
+
+                <Select>
+                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                    <SelectValue placeholder="Board Type" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+                    <SelectItem value="cbse">CBSE</SelectItem>
+                    <SelectItem value="icse">ICSE</SelectItem>
+                    <SelectItem value="state">State Board</SelectItem>
+                    <SelectItem value="ncert">NCERT</SelectItem>
+                    <SelectItem value="ib">IB</SelectItem>
+                  </SelectContent>
+                </Select>
+
+                <Select>
+                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                    <SelectValue placeholder="Experience" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+                    <SelectItem value="0-1">0-1 years</SelectItem>
+                    <SelectItem value="1-3">1-3 years</SelectItem>
+                    <SelectItem value="3-5">3-5 years</SelectItem>
+                    <SelectItem value="5-8">5-8 years</SelectItem>
+                    <SelectItem value="8+">8+ years</SelectItem>
+                  </SelectContent>
+                </Select>
+
+                <Select>
+                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                    <SelectValue placeholder="Urgency" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+                    <SelectItem value="immediate">Immediate</SelectItem>
+                    <SelectItem value="asap">ASAP</SelectItem>
+                    <SelectItem value="15-days">Within 15 days</SelectItem>
+                    <SelectItem value="30-days">Within 30 days</SelectItem>
+                  </SelectContent>
+                </Select>
+
+                <Select>
+                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                    <SelectValue placeholder="Location" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+                    <SelectItem value="delhi">Delhi</SelectItem>
+                    <SelectItem value="mumbai">Mumbai</SelectItem>
+                    <SelectItem value="bangalore">Bangalore</SelectItem>
+                    <SelectItem value="chennai">Chennai</SelectItem>
+                    <SelectItem value="kolkata">Kolkata</SelectItem>
+                    <SelectItem value="pune">Pune</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {jobRequirements.map((requirement) => (
@@ -483,31 +562,6 @@ const Index = () => {
               </div>
             </div>
           </div>
-        </section>
-
-        {/* Call to Action Section */}
-        <section className="py-16 bg-[#1A252F] relative overflow-hidden">
-          <div className="container mx-auto px-4 text-center relative z-10">
-            <h2 className="text-4xl font-bold text-white mb-4">Start Your Teaching Journey Today</h2>
-            <p className="text-gray-300 text-xl mb-8">Join thousands of educators finding their dream jobs</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/signup">
-                <Button className="bg-[#D32F2F] hover:bg-[#B71C1C] text-white px-8 py-3 text-lg transition-all duration-300 transform hover:scale-105">
-                  Register as Teacher
-                </Button>
-              </Link>
-              <a href="#jobs">
-                <Button variant="outline" className="border-white text-white hover:bg-white hover:text-[#1A252F] px-8 py-3 text-lg transition-all duration-300">
-                  Browse All Jobs
-                </Button>
-              </a>
-            </div>
-          </div>
-          
-          {/* Decorative Elements */}
-          <div className="absolute top-10 right-10 w-32 h-32 bg-[#FCE4EC] rounded-full opacity-20"></div>
-          <div className="absolute bottom-10 left-10 w-24 h-24 bg-[#FCE4EC] rounded-full opacity-20"></div>
-          <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-[#D32F2F] rounded-full opacity-10"></div>
         </section>
       </main>
     </div>
