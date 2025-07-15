@@ -11,6 +11,7 @@ import SignUpSchool from "./pages/SignUpSchool";
 import SchoolProfile from "./pages/SchoolProfile";
 import PostJob from "./pages/PostJob";
 import TestCredentialsPage from "./pages/TestCredentials";
+import TeacherProfile from "./pages/TeacherProfile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/school-profile" element={<SchoolProfile />} />
             <Route path="/post-job" element={<PostJob />} />
             <Route path="/test-credentials" element={<TestCredentialsPage />} />
+            <Route path="/teacher-profile" element={<TeacherProfile />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

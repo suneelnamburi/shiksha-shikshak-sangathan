@@ -4,6 +4,7 @@ import { MapPin, Clock, Heart, Briefcase, GraduationCap, IndianRupee, BookOpen }
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Link } from 'react-router-dom';
 
 interface JobCardProps {
   id: number;
@@ -128,8 +129,11 @@ const JobCard: React.FC<JobCardProps> = ({
             <Button 
               variant="outline" 
               className="px-6 border-[#D32F2F] text-[#D32F2F] hover:bg-[#D32F2F] hover:text-white transition-all duration-300"
+              asChild
             >
-              Details
+              <Link to="/teacher-profile">
+                Details
+              </Link>
             </Button>
           </div>
         </div>
