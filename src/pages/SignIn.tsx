@@ -4,18 +4,31 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, ArrowLeft } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [userType, setUserType] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Sign in attempt:', { email, password });
-    // Handle sign in logic here
+    console.log('Sign in attempt:', { email, password, userType });
+    
+    // Simulate login and redirect based on user type
+    if (userType === 'teacher') {
+      navigate('/teacher-dashboard');
+    } else if (userType === 'school') {
+      navigate('/school-dashboard');
+    } else if (userType === 'instruction') {
+      navigate('/instruction-dashboard');
+    } else if (userType === 'admin') {
+      navigate('/admin-dashboard');
+    }
   };
 
   return (
@@ -47,6 +60,21 @@ const SignIn = () => {
         
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="userType">User Type</Label>
+              <Select onValueChange={setUserType} required>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select user type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="teacher">Teacher</SelectItem>
+                  <SelectItem value="school">School</SelectItem>
+                  <SelectItem value="instruction">Instructions</SelectItem>
+                  <SelectItem value="admin">Admin</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
             <div className="space-y-2">
               <Label htmlFor="email">Email Address</Label>
               <div className="relative">

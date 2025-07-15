@@ -4,7 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { Star, MapPin, Phone, Mail, GraduationCap, BookOpen, Calendar, Award, MessageCircle } from 'lucide-react';
+import { Star, MapPin, Phone, Mail, GraduationCap, BookOpen, Calendar, Award, MessageCircle, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const TeacherProfile = () => {
   // Sample teacher data - in a real app, this would come from props or API
@@ -64,6 +65,20 @@ const TeacherProfile = () => {
   return (
     <div className="min-h-screen bg-background p-4">
       <div className="max-w-4xl mx-auto space-y-6">
+        {/* Back to Home Button */}
+        <div className="flex items-center justify-between">
+          <Link to="/" className="flex items-center text-primary hover:text-primary/80 transition-colors">
+            <ArrowLeft className="mr-2" size={20} />
+            Back to Home
+          </Link>
+          <div className="flex items-center space-x-2">
+            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-lg">@</span>
+            </div>
+            <span className="text-xl font-bold text-foreground">Teacher Profile</span>
+          </div>
+        </div>
+
         {/* Header Section */}
         <Card>
           <CardHeader>

@@ -12,6 +12,11 @@ import SchoolProfile from "./pages/SchoolProfile";
 import PostJob from "./pages/PostJob";
 import TestCredentialsPage from "./pages/TestCredentials";
 import TeacherProfile from "./pages/TeacherProfile";
+import TeacherDashboard from "./pages/TeacherDashboard";
+import SchoolDashboard from "./pages/SchoolDashboard";
+import InstructionDashboard from "./pages/InstructionDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
+import ApplyNow from "./pages/ApplyNow";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +37,11 @@ const App = () => (
             <Route path="/post-job" element={<PostJob />} />
             <Route path="/test-credentials" element={<TestCredentialsPage />} />
             <Route path="/teacher-profile" element={<TeacherProfile />} />
+            <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
+            <Route path="/school-dashboard" element={<SchoolDashboard />} />
+            <Route path="/instruction-dashboard" element={<InstructionDashboard />} />
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
+            <Route path="/apply-now/:jobId?" element={<ApplyNow />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

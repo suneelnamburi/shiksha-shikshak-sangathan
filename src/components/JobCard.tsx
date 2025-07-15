@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 
 interface JobCardProps {
-  id: number;
+  id: string;
   title: string;
   school: string;
   location: string;
@@ -51,6 +51,7 @@ const JobCard: React.FC<JobCardProps> = ({
                 {title}
               </h3>
               <p className="text-gray-600 font-medium">{school}</p>
+              <p className="text-xs text-gray-500">Job ID: {id}</p>
             </div>
           </div>
           
@@ -123,8 +124,11 @@ const JobCard: React.FC<JobCardProps> = ({
           <div className="flex space-x-3">
             <Button 
               className="flex-1 bg-[#D32F2F] hover:bg-[#B71C1C] transition-all duration-300 transform hover:scale-105"
+              asChild
             >
-              Apply Now
+              <Link to={`/apply-now/${id}`}>
+                Apply Now
+              </Link>
             </Button>
             <Button 
               variant="outline" 
