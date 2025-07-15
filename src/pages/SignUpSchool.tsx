@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Link } from 'react-router-dom';
-import { Eye, EyeOff, Mail, Lock, Building, Phone, MapPin, Calendar, Users, ArrowLeft, Shield } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, Building, Phone, MapPin, Calendar, Users, ArrowLeft } from 'lucide-react';
 
 const SignUpSchool = () => {
   const [formData, setFormData] = useState({
@@ -25,13 +25,12 @@ const SignUpSchool = () => {
     totalStudents: '',
     totalTeachers: '',
     website: '',
-    description: '',
-    registrationId: ''
+    description: ''
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [isVerifying, setIsVerifying] = useState(false);
-  const [isVerified, setIsVerified] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [uniqueId, setUniqueId] = useState('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -42,34 +41,62 @@ const SignUpSchool = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleVerifyRegistration = () => {
-    if (!formData.registrationId) {
-      alert('Please enter your School Registration ID');
-      return;
-    }
-    
-    setIsVerifying(true);
-    // Simulate verification process
-    setTimeout(() => {
-      setIsVerifying(false);
-      setIsVerified(true);
-      alert('School Registration ID verified successfully!');
-    }, 2000);
+  const generateUniqueId = () => {
+    const prefix = 'SCH';
+    const randomNum = Math.floor(Math.random() * 900000) + 100000;
+    const timestamp = Date.now().toString().slice(-4);
+    return `${prefix}${randomNum}${timestamp}`;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isVerified) {
-      alert('Please verify your School Registration ID first');
-      return;
-    }
     if (formData.password !== formData.confirmPassword) {
       alert('Passwords do not match');
       return;
     }
-    console.log('School registration:', formData);
-    // Handle registration logic here
+    
+    // Generate unique ID
+    const id = generateUniqueId();
+    setUniqueId(id);
+    
+    console.log('School registration:', { ...formData, uniqueId: id });
+    
+    // Show success message
+    setIsRegistered(true);
   };
+
+  if (isRegistered) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center px-4 py-8">
+        <Card className="w-full max-w-md shadow-lg bg-card border-2 border-border">
+          <CardHeader className="text-center space-y-4 pb-8">
+            <div className="flex items-center justify-center space-x-2">
+              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-lg">@</span>
+              </div>
+              <h1 className="text-2xl font-bold text-foreground">शिक्षक Portal</h1>
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-green-600">Registration Successful!</h2>
+              <p className="text-muted-foreground">Your school has been registered successfully</p>
+            </div>
+          </CardHeader>
+          <CardContent className="text-center space-y-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <p className="text-sm text-green-800 mb-2">Your Unique School ID:</p>
+              <p className="text-lg font-bold text-green-600">{uniqueId}</p>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              Login credentials have been sent to your email address. Please check your inbox.
+            </p>
+            <Button asChild className="w-full">
+              <Link to="/signin">Sign In Now</Link>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4 py-8">
@@ -100,35 +127,6 @@ const SignUpSchool = () => {
         
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Registration ID and Verification */}
-            <div className="space-y-2">
-              <Label htmlFor="registrationId">School Registration ID</Label>
-              <div className="flex gap-2">
-                <div className="relative flex-1">
-                  <Shield className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
-                  <Input
-                    id="registrationId"
-                    name="registrationId"
-                    type="text"
-                    placeholder="Enter your school registration ID"
-                    value={formData.registrationId}
-                    onChange={handleInputChange}
-                    className="pl-10"
-                    required
-                  />
-                </div>
-                <Button 
-                  type="button" 
-                  variant="outline" 
-                  onClick={handleVerifyRegistration}
-                  disabled={isVerifying || isVerified}
-                  className={isVerified ? 'bg-green-50 border-green-200 text-green-800' : ''}
-                >
-                  {isVerifying ? 'Verifying...' : isVerified ? 'Verified ✓' : 'Verify'}
-                </Button>
-              </div>
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="schoolName">School Name</Label>
@@ -385,7 +383,6 @@ const SignUpSchool = () => {
             <Button 
               type="submit" 
               className="w-full bg-primary hover:bg-primary/90 h-12 text-primary-foreground font-semibold"
-              disabled={!isVerified}
             >
               Register School
             </Button>

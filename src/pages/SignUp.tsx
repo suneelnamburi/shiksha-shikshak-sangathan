@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Link } from 'react-router-dom';
-import { Eye, EyeOff, Mail, Lock, User, Phone, MapPin, GraduationCap, BookOpen, ArrowLeft, Shield } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, User, Phone, MapPin, GraduationCap, BookOpen, ArrowLeft } from 'lucide-react';
 import UserTypeSelection from '@/components/UserTypeSelection';
 import RegistrationSuccess from '@/components/RegistrationSuccess';
 
@@ -24,13 +24,10 @@ const SignUp = () => {
     qualification: '',
     experience: '',
     subjects: '',
-    about: '',
-    registrationId: ''
+    about: ''
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [isVerifying, setIsVerifying] = useState(false);
-  const [isVerified, setIsVerified] = useState(false);
 
   const generateUniqueId = (type: 'teacher' | 'school' | 'institution') => {
     const prefix = type === 'teacher' ? 'TCH' : type === 'school' ? 'SCH' : 'INS';
@@ -48,27 +45,8 @@ const SignUp = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleVerifyRegistration = () => {
-    if (!formData.registrationId) {
-      alert('Please enter your Registration ID');
-      return;
-    }
-    
-    setIsVerifying(true);
-    // Simulate verification process
-    setTimeout(() => {
-      setIsVerifying(false);
-      setIsVerified(true);
-      alert('Registration ID verified successfully!');
-    }, 2000);
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isVerified) {
-      alert('Please verify your Registration ID first');
-      return;
-    }
     if (formData.password !== formData.confirmPassword) {
       alert('Passwords do not match');
       return;
@@ -163,37 +141,6 @@ const SignUp = () => {
         
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Registration ID and Verification */}
-            <div className="space-y-2">
-              <Label htmlFor="registrationId">
-                {userType === 'teacher' ? 'Teacher' : userType === 'school' ? 'School' : 'Institution'} Registration ID
-              </Label>
-              <div className="flex gap-2">
-                <div className="relative flex-1">
-                  <Shield className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
-                  <Input
-                    id="registrationId"
-                    name="registrationId"
-                    type="text"
-                    placeholder={`Enter your ${userType} registration ID`}
-                    value={formData.registrationId}
-                    onChange={handleInputChange}
-                    className="pl-10"
-                    required
-                  />
-                </div>
-                <Button 
-                  type="button" 
-                  variant="outline" 
-                  onClick={handleVerifyRegistration}
-                  disabled={isVerifying || isVerified}
-                  className={isVerified ? 'bg-green-50 border-green-200 text-green-800' : ''}
-                >
-                  {isVerifying ? 'Verifying...' : isVerified ? 'Verified ✓' : 'Verify'}
-                </Button>
-              </div>
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="fullName">Full Name</Label>
@@ -400,7 +347,6 @@ const SignUp = () => {
             <Button 
               type="submit" 
               className="w-full bg-primary hover:bg-primary/90 h-12 text-primary-foreground font-semibold"
-              disabled={!isVerified}
             >
               Create Account
             </Button>

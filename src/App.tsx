@@ -17,6 +17,7 @@ import SchoolDashboard from "./pages/SchoolDashboard";
 import InstructionDashboard from "./pages/InstructionDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import ApplyNow from "./pages/ApplyNow";
+import Subscribe from "./pages/Subscribe";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const App = () => (
             <Route path="/instruction-dashboard" element={<InstructionDashboard />} />
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
             <Route path="/apply-now/:jobId?" element={<ApplyNow />} />
+            <Route path="/subscribe" element={<Subscribe />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
