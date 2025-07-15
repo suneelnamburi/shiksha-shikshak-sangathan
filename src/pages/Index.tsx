@@ -1,10 +1,10 @@
-
 import React, { useState } from 'react';
 import { Search, BookOpen, Users, Award, MapPin, Clock, Heart, Filter, Phone, Mail, Globe, Shield, Zap, Target, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Link } from 'react-router-dom';
 import CategoryCard from '@/components/CategoryCard';
 import JobCard from '@/components/JobCard';
@@ -330,10 +330,24 @@ const Index = () => {
               <p className="text-gray-600 text-lg">Meet our experienced and qualified teachers</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {teacherProfiles.map((teacher) => (
-                <TeacherProfileCard key={teacher.id} {...teacher} />
-              ))}
+            <div className="relative">
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-2 md:-ml-4">
+                  {teacherProfiles.map((teacher) => (
+                    <CarouselItem key={teacher.id} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                      <TeacherProfileCard {...teacher} />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-0 md:-left-12" />
+                <CarouselNext className="right-0 md:-right-12" />
+              </Carousel>
             </div>
           </div>
         </section>
@@ -620,10 +634,24 @@ const Index = () => {
               </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {jobs.map((job) => (
-                <JobCard key={job.id} {...job} />
-              ))}
+            <div className="relative">
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-2 md:-ml-4">
+                  {jobs.map((job) => (
+                    <CarouselItem key={job.id} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                      <JobCard {...job} />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-0 md:-left-12" />
+                <CarouselNext className="right-0 md:-right-12" />
+              </Carousel>
             </div>
           </div>
         </section>
