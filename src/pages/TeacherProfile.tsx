@@ -198,9 +198,9 @@ const TeacherProfile = () => {
                 <CardTitle className="text-lg font-semibold text-gray-900">Specializations</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="bg-green-50 rounded-lg p-4">
+                <div className="bg-red-50 rounded-lg p-4">
                   <div className="flex items-center mb-3">
-                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center mr-2">
+                    <div className="w-5 h-5 bg-red-500 rounded-full flex items-center justify-center mr-2">
                       <CheckCircle className="text-white" size={12} />
                     </div>
                     <span className="font-medium text-gray-900">Areas of Expertise:</span>
