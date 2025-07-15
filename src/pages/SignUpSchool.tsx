@@ -1,11 +1,10 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Link } from 'react-router-dom';
-import { Eye, EyeOff, Mail, Lock, User, Phone, Home, Building, MapPin, Globe } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, User, Phone, Home, Building, MapPin, Globe, ArrowLeft } from 'lucide-react';
 
 const SignUpSchool = () => {
   const [formData, setFormData] = useState({
@@ -48,13 +47,17 @@ const SignUpSchool = () => {
     <div className="min-h-screen bg-background flex items-center justify-center px-4 py-8">
       <Card className="w-full max-w-2xl shadow-2xl bg-card border-2 border-border">
         <CardHeader className="text-center space-y-4 pb-8">
-          <div className="flex items-center justify-center space-x-2">
-            <Link to="/" className="flex items-center space-x-2">
+          <div className="flex items-center justify-between">
+            <Link to="/" className="flex items-center text-primary hover:text-primary/80 transition-colors">
+              <ArrowLeft className="mr-2" size={20} />
+              Back to Home
+            </Link>
+            <div className="flex items-center space-x-2">
               <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
                 <span className="text-primary-foreground font-bold text-lg">@</span>
               </div>
               <h1 className="text-2xl font-bold text-foreground">शिक्षक Portal</h1>
-            </Link>
+            </div>
           </div>
           <div>
             <h2 className="text-2xl font-bold text-foreground">School Registration</h2>

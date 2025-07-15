@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Search, BookOpen, Users, Award, MapPin, Clock, Heart, Filter, Phone, Mail, Globe, Shield, Zap, Target } from 'lucide-react';
+import { Search, BookOpen, Users, Award, MapPin, Clock, Heart, Filter, Phone, Mail, Globe, Shield, Zap, Target, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -14,15 +14,6 @@ import TeacherGallery from '@/components/TeacherGallery';
 const Index = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
   const [searchLocation, setSearchLocation] = useState('');
-
-  const categories = [
-    { icon: BookOpen, name: 'Mathematics', positions: 450, color: '#D32F2F' },
-    { icon: Users, name: 'English', positions: 380, color: '#D32F2F' },
-    { icon: Award, name: 'Science', positions: 320, color: '#D32F2F' },
-    { icon: BookOpen, name: 'Social Studies', positions: 280, color: '#D32F2F' },
-    { icon: Users, name: 'Hindi', positions: 250, color: '#D32F2F' },
-    { icon: Award, name: 'Computer Science', positions: 180, color: '#D32F2F' },
-  ];
 
   const jobs = [
     {
@@ -228,22 +219,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Categories Section */}
-        <section id="categories" className="py-16 bg-white/80 backdrop-blur-sm">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-black mb-4">Choose Your Subject Category</h2>
-              <p className="text-gray-600 text-lg">Find teaching opportunities in your area of expertise</p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {categories.map((category, index) => (
-                <CategoryCard key={index} {...category} />
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Services Section */}
         <section id="services" className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
@@ -361,25 +336,25 @@ const Index = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div>
+              <div className="text-center md:text-left">
                 <h3 className="text-2xl font-bold mb-6">Get In Touch</h3>
                 <div className="space-y-4">
-                  <div className="flex items-center">
+                  <div className="flex items-center justify-center md:justify-start">
                     <Phone className="mr-4 text-[#D32F2F]" size={20} />
                     <span>+91 98765 43210</span>
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-center justify-center md:justify-start">
                     <Mail className="mr-4 text-[#D32F2F]" size={20} />
                     <span>info@shikshakportal.com</span>
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-center justify-center md:justify-start">
                     <MapPin className="mr-4 text-[#D32F2F]" size={20} />
                     <span>123 Education Street, New Delhi, India</span>
                   </div>
                 </div>
               </div>
               
-              <div>
+              <div className="text-center md:text-left">
                 <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
                 <form className="space-y-4">
                   <Input

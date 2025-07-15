@@ -8,6 +8,9 @@ import Index from "./pages/Index";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import SignUpSchool from "./pages/SignUpSchool";
+import SchoolProfile from "./pages/SchoolProfile";
+import PostJob from "./pages/PostJob";
+import TestCredentialsPage from "./pages/TestCredentials";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +27,9 @@ const App = () => (
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/signup-school" element={<SignUpSchool />} />
+            <Route path="/school-profile" element={<SchoolProfile />} />
+            <Route path="/post-job" element={<PostJob />} />
+            <Route path="/test-credentials" element={<TestCredentialsPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
