@@ -10,6 +10,7 @@ import CategoryCard from '@/components/CategoryCard';
 import JobCard from '@/components/JobCard';
 import HeroSection from '@/components/HeroSection';
 import TeacherGallery from '@/components/TeacherGallery';
+import JobRequirementCard from '@/components/JobRequirementCard';
 
 const Index = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -90,21 +91,84 @@ const Index = () => {
     }
   ];
 
+  const jobRequirements = [
+    {
+      id: 1,
+      title: 'Urgently Required: Mathematics Teacher',
+      school: 'St. Mary\'s Convent School',
+      location: 'Delhi',
+      requirements: ['B.Ed in Mathematics', 'Minimum 3 years experience', 'CBSE board knowledge'],
+      salary: '₹45,000 - ₹60,000',
+      urgency: 'Immediate',
+      contactEmail: 'hr@stmarysdelhi.edu.in',
+      contactPhone: '+91 98765 43210',
+      timePosted: '1 hr ago'
+    },
+    {
+      id: 2,
+      title: 'Physics Teacher Required',
+      school: 'Modern Public School',
+      location: 'Mumbai',
+      requirements: ['M.Sc Physics', 'B.Ed certification', 'Lab experience preferred'],
+      salary: '₹40,000 - ₹55,000',
+      urgency: 'Within 15 days',
+      contactEmail: 'recruitment@modernschool.com',
+      contactPhone: '+91 87654 32109',
+      timePosted: '3 hrs ago'
+    },
+    {
+      id: 3,
+      title: 'English Literature Teacher',
+      school: 'Cambridge International School',
+      location: 'Bangalore',
+      requirements: ['MA English Literature', 'B.Ed mandatory', 'International curriculum experience'],
+      salary: '₹50,000 - ₹70,000',
+      urgency: 'ASAP',
+      contactEmail: 'jobs@cambridgeblr.edu.in',
+      contactPhone: '+91 76543 21098',
+      timePosted: '5 hrs ago'
+    }
+  ];
+
   const services = [
     {
       icon: Shield,
       title: 'Verified Schools',
-      description: 'All educational institutions are thoroughly verified and authenticated'
+      description: 'All educational institutions are thoroughly verified and authenticated',
+      isPaid: false
     },
     {
       icon: Target,
       title: 'Perfect Matching',
-      description: 'Advanced algorithm matches teachers with suitable positions'
+      description: 'Advanced algorithm matches teachers with suitable positions',
+      isPaid: false
     },
     {
       icon: Zap,
       title: 'Quick Hiring',
-      description: 'Streamlined process ensures faster recruitment and onboarding'
+      description: 'Streamlined process ensures faster recruitment and onboarding',
+      isPaid: false
+    },
+    {
+      icon: Users,
+      title: 'Premium Job Alerts',
+      description: 'Get instant notifications for jobs matching your profile. Priority access to new openings.',
+      isPaid: true,
+      price: '₹299/month'
+    },
+    {
+      icon: BookOpen,
+      title: 'Career Counseling',
+      description: 'One-on-one career guidance sessions with education experts. Resume review and interview preparation.',
+      isPaid: true,
+      price: '₹1,999/session'
+    },
+    {
+      icon: Award,
+      title: 'Profile Boost',
+      description: 'Featured profile placement to increase visibility to schools. Higher chances of getting selected.',
+      isPaid: true,
+      price: '₹499/month'
     }
   ];
 
@@ -229,17 +293,46 @@ const Index = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {services.map((service, index) => (
-                <Card key={index} className="border-2 border-border hover:shadow-lg transition-shadow">
+                <Card key={index} className="border-2 border-border hover:shadow-lg transition-shadow relative overflow-hidden">
+                  {service.isPaid && (
+                    <div className="absolute top-2 right-2 bg-[#D32F2F] text-white px-2 py-1 rounded-full text-xs font-bold">
+                      PREMIUM
+                    </div>
+                  )}
                   <CardHeader className="text-center">
                     <div className="w-16 h-16 bg-[#D32F2F] rounded-full flex items-center justify-center mx-auto mb-4">
                       <service.icon className="text-white" size={24} />
                     </div>
                     <h3 className="text-xl font-bold text-black">{service.title}</h3>
+                    {service.isPaid && (
+                      <p className="text-[#D32F2F] font-bold text-lg">{service.price}</p>
+                    )}
                   </CardHeader>
                   <CardContent className="text-center">
                     <p className="text-gray-600">{service.description}</p>
+                    {service.isPaid && (
+                      <Button className="mt-4 bg-[#D32F2F] hover:bg-[#B71C1C] w-full">
+                        Subscribe Now
+                      </Button>
+                    )}
                   </CardContent>
                 </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Job Requirements Section */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-black mb-4">Urgent Job Requirements</h2>
+              <p className="text-gray-600 text-lg">Schools actively seeking qualified teachers</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {jobRequirements.map((requirement) => (
+                <JobRequirementCard key={requirement.id} {...requirement} />
               ))}
             </div>
           </div>
@@ -262,7 +355,7 @@ const Index = () => {
                 </h3>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                 <Select>
                   <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
                     <SelectValue placeholder="Subject" />
@@ -314,6 +407,18 @@ const Index = () => {
                     <SelectItem value="bengali">Bengali</SelectItem>
                     <SelectItem value="marathi">Marathi</SelectItem>
                     <SelectItem value="gujarati">Gujarati</SelectItem>
+                  </SelectContent>
+                </Select>
+
+                <Select>
+                  <SelectTrigger className="bg-white border-gray-200 focus:border-[#D32F2F] focus:ring-[#D32F2F]">
+                    <SelectValue placeholder="Job Type" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white border border-gray-200 shadow-lg z-50">
+                    <SelectItem value="full-time">Full-time</SelectItem>
+                    <SelectItem value="part-time">Part-time</SelectItem>
+                    <SelectItem value="contract">Contract</SelectItem>
+                    <SelectItem value="job-requirement">Job Requirement</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

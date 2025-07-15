@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Link } from 'react-router-dom';
-import { Eye, EyeOff, Mail, Lock, User, Phone, Home, GraduationCap, BookOpen } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, User, Phone, Home, GraduationCap, BookOpen, ArrowLeft } from 'lucide-react';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -44,6 +44,15 @@ const SignUp = () => {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4 py-8">
+      {/* Back to Home Button */}
+      <Link 
+        to="/" 
+        className="absolute top-4 left-4 flex items-center text-primary hover:text-primary/80 transition-colors"
+      >
+        <ArrowLeft className="mr-2" size={20} />
+        Back to Home
+      </Link>
+
       <Card className="w-full max-w-2xl shadow-2xl bg-card border-2 border-border">
         <CardHeader className="text-center space-y-4 pb-8">
           <div className="flex items-center justify-center space-x-2">
