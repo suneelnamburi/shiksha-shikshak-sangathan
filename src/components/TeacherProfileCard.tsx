@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { MapPin, BookOpen, Star, Award, Calendar, Mail, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface TeacherProfileCardProps {
   id: string;
@@ -37,33 +38,33 @@ const TeacherProfileCard: React.FC<TeacherProfileCardProps> = ({
   avatar
 }) => {
   return (
-    <Card className="border-2 border-gray-300 hover:shadow-xl transition-all duration-300 hover:border-primary/70 group bg-white">
+    <Card className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
       <CardHeader className="pb-3">
         <div className="flex items-start space-x-4">
-          <div className="w-16 h-16 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center">
+          <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
             {avatar ? (
               <img src={avatar} alt={name} className="w-full h-full rounded-full object-cover" />
             ) : (
-              <span className="text-primary-foreground font-bold text-xl">
+              <span className="text-white font-bold text-lg">
                 {name.split(' ').map(n => n[0]).join('')}
               </span>
             )}
           </div>
           <div className="flex-1">
-            <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+            <CardTitle className="text-lg font-semibold text-gray-900">
               {name}
             </CardTitle>
-            <p className="text-primary font-semibold text-lg">{subject} Teacher</p>
+            <p className="text-gray-600 text-sm font-medium">{subject} Teacher</p>
             <div className="flex items-center mt-1">
               <div className="flex items-center">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    size={16}
+                    size={14}
                     className={i < Math.floor(rating) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}
                   />
                 ))}
-                <span className="ml-2 text-sm text-muted-foreground">
+                <span className="ml-1 text-xs text-gray-500">
                   {rating.toFixed(1)} ({totalRatings} reviews)
                 </span>
               </div>
@@ -72,65 +73,67 @@ const TeacherProfileCard: React.FC<TeacherProfileCardProps> = ({
         </div>
       </CardHeader>
       
-      <CardContent className="space-y-4">
-        <div className="grid grid-cols-1 gap-3">
-          <div className="flex items-center text-sm text-muted-foreground">
-            <MapPin size={14} className="mr-2 text-primary" />
+      <CardContent className="space-y-3">
+        <div className="space-y-2">
+          <div className="flex items-center text-sm text-gray-600">
+            <MapPin size={14} className="mr-2 text-red-500" />
             <span>{location}</span>
           </div>
-          <div className="flex items-center text-sm text-muted-foreground">
-            <Calendar size={14} className="mr-2 text-primary" />
+          <div className="flex items-center text-sm text-gray-600">
+            <Calendar size={14} className="mr-2 text-red-500" />
             <span>{experience} experience</span>
           </div>
-          <div className="flex items-center text-sm text-muted-foreground">
-            <Award size={14} className="mr-2 text-primary" />
+          <div className="flex items-center text-sm text-gray-600">
+            <Award size={14} className="mr-2 text-red-500" />
             <span>{education}</span>
           </div>
           {school && (
-            <div className="flex items-center text-sm text-muted-foreground">
-              <BookOpen size={14} className="mr-2 text-primary" />
+            <div className="flex items-center text-sm text-gray-600">
+              <BookOpen size={14} className="mr-2 text-red-500" />
               <span>Currently at {school}</span>
             </div>
           )}
         </div>
 
-        <div className="space-y-2">
-          <h4 className="font-semibold text-sm text-foreground">Specializations:</h4>
+        <div className="bg-green-50 rounded-lg p-3">
+          <div className="flex items-center mb-2">
+            <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center mr-2">
+              <span className="text-white text-xs">✓</span>
+            </div>
+            <span className="font-medium text-sm text-gray-800">Specializations:</span>
+          </div>
           <div className="flex flex-wrap gap-1">
             {specializations.map((spec, index) => (
-              <Badge key={index} variant="secondary" className="text-xs">
-                {spec}
-              </Badge>
+              <span key={index} className="text-xs text-gray-600 bg-white px-2 py-1 rounded">
+                • {spec}
+              </span>
             ))}
           </div>
         </div>
 
-        <div className="pt-3 border-t border-gray-200">
-          <div className="flex items-center justify-between text-xs text-muted-foreground mb-3">
-            <div className="flex items-center">
-              <Mail size={12} className="mr-1" />
+        <div className="bg-red-50 rounded-lg p-3">
+          <h4 className="font-medium text-sm text-gray-800 mb-2">Contact Details:</h4>
+          <div className="space-y-1">
+            <div className="flex items-center text-xs text-gray-600">
+              <Mail size={12} className="mr-2 text-red-500" />
               <span className="truncate">{email}</span>
             </div>
-            <div className="flex items-center">
-              <Phone size={12} className="mr-1" />
+            <div className="flex items-center text-xs text-gray-600">
+              <Phone size={12} className="mr-2 text-red-500" />
               <span>{phone}</span>
             </div>
           </div>
-          
-          <div className="flex gap-2">
-            <Button className="flex-1 bg-primary hover:bg-primary/90 text-sm">
-              View Profile
-            </Button>
-            <Button variant="outline" className="flex-1 text-sm border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-              Contact
-            </Button>
-          </div>
         </div>
 
-        <div className="text-center">
-          <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">
-            ID: {id}
-          </Badge>
+        <div className="flex gap-2 pt-2">
+          <Link to={`/teacher-profile/${id}`} className="flex-1">
+            <Button className="w-full bg-red-500 hover:bg-red-600 text-white text-sm">
+              View Profile
+            </Button>
+          </Link>
+          <Button variant="outline" className="flex-1 text-sm border-red-500 text-red-500 hover:bg-red-50">
+            Contact
+          </Button>
         </div>
       </CardContent>
     </Card>

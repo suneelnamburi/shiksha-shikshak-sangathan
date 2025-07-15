@@ -1,9 +1,9 @@
 
 import React from 'react';
+import { MapPin, Clock, Building, DollarSign, BookOpen, Users, AlertCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { MapPin, Clock, BookOpen, DollarSign, Building2, Hash } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface JobCardProps {
@@ -17,8 +17,8 @@ interface JobCardProps {
   salary: string;
   board: string;
   subjects: string[];
-  schoolId?: string;
-  institutionId?: string;
+  schoolId: string;
+  institutionId: string;
 }
 
 const JobCard: React.FC<JobCardProps> = ({
@@ -36,90 +36,88 @@ const JobCard: React.FC<JobCardProps> = ({
   institutionId
 }) => {
   return (
-    <Card className="border-2 border-gray-300 hover:shadow-xl transition-all duration-300 hover:border-primary/70 group bg-white">
+    <Card className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between">
-          <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-            {title}
-          </CardTitle>
-          <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">
+          <div className="flex items-center space-x-3">
+            <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
+              <AlertCircle className="text-white" size={20} />
+            </div>
+            <div>
+              <CardTitle className="text-lg font-semibold text-gray-900">
+                {title}
+              </CardTitle>
+              <p className="text-gray-600 text-sm font-medium">{school}</p>
+            </div>
+          </div>
+          <Badge className="bg-red-50 text-red-700 border-red-200 font-medium text-xs">
             {category}
           </Badge>
         </div>
-        <div className="flex items-center text-muted-foreground">
-          <MapPin size={16} className="mr-1" />
-          <span className="font-medium">{school}</span>
-          <span className="mx-2">•</span>
-          <span>{location}</span>
-        </div>
       </CardHeader>
       
-      <CardContent className="space-y-4">
-        <div className="flex items-center justify-between text-sm">
-          <div className="flex items-center text-muted-foreground">
-            <Clock size={14} className="mr-1" />
+      <CardContent className="space-y-3">
+        <div className="flex items-center justify-between text-sm text-gray-600">
+          <div className="flex items-center">
+            <MapPin size={14} className="mr-1 text-red-500" />
+            <span>{location}</span>
+          </div>
+          <div className="flex items-center">
+            <Clock size={14} className="mr-1 text-red-500" />
             <span>{timePosted}</span>
-          </div>
-          <div className="flex items-center text-muted-foreground">
-            <BookOpen size={14} className="mr-1" />
-            <span>{experience}</span>
-          </div>
-        </div>
-        
-        <div className="flex items-center text-primary font-semibold">
-          <DollarSign size={16} className="mr-1" />
-          <span>{salary}</span>
-        </div>
-        
-        <div className="flex items-center justify-between">
-          <Badge variant="secondary" className="bg-muted">
-            {board}
-          </Badge>
-          <div className="flex flex-wrap gap-1">
-            {subjects.slice(0, 2).map((subject, index) => (
-              <Badge key={index} variant="outline" className="text-xs">
-                {subject}
-              </Badge>
-            ))}
-            {subjects.length > 2 && (
-              <Badge variant="outline" className="text-xs">
-                +{subjects.length - 2}
-              </Badge>
-            )}
           </div>
         </div>
 
-        {/* Institution and School IDs */}
-        <div className="bg-gray-50 rounded-lg p-3 space-y-2">
-          <div className="flex items-center justify-between text-xs">
-            <div className="flex items-center text-muted-foreground">
-              <Hash size={12} className="mr-1 text-primary" />
-              <span>Job ID: {id}</span>
+        <div className="bg-green-50 rounded-lg p-3">
+          <div className="flex items-center mb-2">
+            <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center mr-2">
+              <span className="text-white text-xs">✓</span>
+            </div>
+            <span className="font-medium text-sm text-gray-800">Requirements:</span>
+          </div>
+          <div className="space-y-1">
+            <div className="flex items-center text-xs text-gray-600">
+              <span className="mr-2">•</span>
+              <span>{experience} experience</span>
+            </div>
+            <div className="flex items-center text-xs text-gray-600">
+              <span className="mr-2">•</span>
+              <span>{board} board knowledge</span>
+            </div>
+            <div className="flex items-center text-xs text-gray-600">
+              <span className="mr-2">•</span>
+              <span>Subjects: {subjects.join(', ')}</span>
             </div>
           </div>
-          {schoolId && (
-            <div className="flex items-center text-xs text-muted-foreground">
-              <Building2 size={12} className="mr-1 text-primary" />
-              <span>School ID: {schoolId}</span>
-            </div>
-          )}
-          {institutionId && (
-            <div className="flex items-center text-xs text-muted-foreground">
-              <Building2 size={12} className="mr-1 text-primary" />
-              <span>Institution ID: {institutionId}</span>
-            </div>
-          )}
         </div>
-        
+
+        <div className="space-y-2">
+          <div>
+            <p className="text-xs text-gray-600">Salary Range</p>
+            <p className="text-lg font-semibold text-red-600">{salary}</p>
+          </div>
+        </div>
+
+        <div className="bg-red-50 rounded-lg p-3">
+          <h4 className="font-medium text-sm text-gray-800 mb-2">Contact Details:</h4>
+          <div className="space-y-1">
+            <div className="text-xs text-gray-600">
+              <span className="font-medium">School ID:</span> {schoolId}
+            </div>
+            <div className="text-xs text-gray-600">
+              <span className="font-medium">Institution ID:</span> {institutionId}
+            </div>
+          </div>
+        </div>
+
         <div className="flex gap-2 pt-2">
-          <Button 
-            className="flex-1 bg-primary hover:bg-primary/90"
-            asChild
-          >
-            <Link to={`/apply-now/${id}`}>Apply Now</Link>
-          </Button>
-          <Button variant="outline" className="flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-            Save Job
+          <Link to={`/apply-now/${id}`} className="flex-1">
+            <Button className="w-full bg-red-500 hover:bg-red-600 text-white text-sm">
+              Apply Now
+            </Button>
+          </Link>
+          <Button variant="outline" className="flex-1 text-sm border-red-500 text-red-500 hover:bg-red-50">
+            Contact
           </Button>
         </div>
       </CardContent>
