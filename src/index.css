@@ -45,7 +45,7 @@ All colors MUST be HSL.
     --brand-secondary: 0 65% 45%;
     --brand-accent: 0 65% 95%;
     --brand-dark: 210 20% 16%;
-    --brand-success: 0 65% 51%;
+    --brand-success: 120 45% 45%;
     --brand-warning: 45 85% 55%;
     --brand-info: 210 85% 55%;
 
@@ -94,7 +94,7 @@ All colors MUST be HSL.
     --brand-secondary: 0 65% 45%;
     --brand-accent: 0 65% 15%;
     --brand-dark: 210 20% 8%;
-    --brand-success: 0 65% 51%;
+    --brand-success: 120 45% 35%;
     --brand-warning: 45 85% 45%;
     --brand-info: 210 85% 45%;
 
@@ -154,7 +154,7 @@ All colors MUST be HSL.
   }
 
   .success-section {
-    @apply bg-[hsl(var(--brand-accent))]/10 rounded-lg p-3;
+    @apply bg-[hsl(var(--brand-success))]/10 rounded-lg p-3;
   }
 
   .contact-section {

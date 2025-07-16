@@ -97,8 +97,8 @@ const TeacherProfileCard: React.FC<TeacherProfileCardProps> = ({
 
         <div className="success-section flex-1">
           <div className="flex items-center mb-2">
-            <div className="w-4 h-4 bg-brand-primary rounded-full flex items-center justify-center mr-2 shrink-0">
-              <span className="text-brand-primary-foreground text-xs">✓</span>
+            <div className="w-4 h-4 bg-brand-success rounded-full flex items-center justify-center mr-2 shrink-0">
+              <span className="text-white text-xs">✓</span>
             </div>
             <span className="font-medium text-sm text-card-foreground">Specializations:</span>
           </div>
