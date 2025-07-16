@@ -9,13 +9,13 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 43 13% 98%;
+    --background: 43 13% 96%;
     --foreground: 222.2 84% 4.9%;
 
-    --card: 43 13% 99%;
+    --card: 43 13% 98%;
     --card-foreground: 222.2 84% 4.9%;
 
-    --popover: 43 13% 99%;
+    --popover: 43 13% 98%;
     --popover-foreground: 222.2 84% 4.9%;
 
     --primary: 220 13% 18%;
@@ -24,7 +24,7 @@ All colors MUST be HSL.
     --secondary: 220 13% 91%;
     --secondary-foreground: 220 13% 18%;
 
-    --muted: 220 13% 95%;
+    --muted: 220 13% 94%;
     --muted-foreground: 220 9% 46%;
 
     --accent: 220 13% 91%;
@@ -33,29 +33,29 @@ All colors MUST be HSL.
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 43 13% 98%;
 
-    --border: 220 13% 88%;
-    --input: 220 13% 88%;
+    --border: 220 13% 85%;
+    --input: 220 13% 85%;
     --ring: 220 13% 18%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    /* Enhanced brand colors for modern design */
-    --brand-primary: 16 90% 58%;
+    /* Brand colors for consistent theming */
+    --brand-primary: 0 65% 51%;
     --brand-primary-foreground: 43 13% 98%;
-    --brand-secondary: 22 85% 50%;
-    --brand-accent: 16 90% 96%;
+    --brand-secondary: 0 65% 45%;
+    --brand-accent: 0 65% 95%;
     --brand-dark: 210 20% 16%;
-    --brand-success: 120 45% 45%;
+    --brand-success: 0 65% 51%;
     --brand-warning: 45 85% 55%;
     --brand-info: 210 85% 55%;
 
-    --sidebar-background: 43 13% 99%;
+    --sidebar-background: 43 13% 98%;
     --sidebar-foreground: 220 13% 26%;
     --sidebar-primary: 220 13% 18%;
     --sidebar-primary-foreground: 43 13% 98%;
-    --sidebar-accent: 220 13% 96%;
+    --sidebar-accent: 220 13% 94%;
     --sidebar-accent-foreground: 220 13% 18%;
-    --sidebar-border: 220 13% 88%;
+    --sidebar-border: 220 13% 85%;
     --sidebar-ring: 220 13% 18%;
   }
 
@@ -63,10 +63,10 @@ All colors MUST be HSL.
     --background: 220 13% 9%;
     --foreground: 43 13% 98%;
 
-    --card: 220 13% 10%;
+    --card: 220 13% 9%;
     --card-foreground: 43 13% 98%;
 
-    --popover: 220 13% 10%;
+    --popover: 220 13% 9%;
     --popover-foreground: 43 13% 98%;
 
     --primary: 43 13% 98%;
@@ -88,17 +88,17 @@ All colors MUST be HSL.
     --input: 220 13% 17%;
     --ring: 220 13% 83%;
 
-    /* Enhanced brand colors for dark mode */
-    --brand-primary: 16 90% 58%;
+    /* Brand colors for dark mode */
+    --brand-primary: 0 65% 51%;
     --brand-primary-foreground: 43 13% 98%;
-    --brand-secondary: 22 85% 50%;
-    --brand-accent: 16 90% 15%;
+    --brand-secondary: 0 65% 45%;
+    --brand-accent: 0 65% 15%;
     --brand-dark: 210 20% 8%;
-    --brand-success: 120 45% 35%;
+    --brand-success: 0 65% 51%;
     --brand-warning: 45 85% 45%;
     --brand-info: 210 85% 45%;
 
-    --sidebar-background: 220 13% 10%;
+    --sidebar-background: 220 13% 9%;
     --sidebar-foreground: 220 13% 95%;
     --sidebar-primary: 43 13% 98%;
     --sidebar-primary-foreground: 220 13% 18%;
@@ -115,38 +115,38 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground;
   }
 }
 
-/* Enhanced component styling for modern design */
+/* Consistent component styling */
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-[hsl(var(--brand-primary))] to-[hsl(var(--brand-secondary))] hover:from-[hsl(var(--brand-secondary))] hover:to-[hsl(var(--brand-primary))] text-[hsl(var(--brand-primary-foreground))] shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105;
+    @apply bg-[hsl(var(--brand-primary))] hover:bg-[hsl(var(--brand-secondary))] text-[hsl(var(--brand-primary-foreground))] transition-all duration-300;
   }
 
   .btn-secondary {
-    @apply bg-secondary hover:bg-secondary/80 text-secondary-foreground border-2 border-border/50 shadow-md hover:shadow-lg transition-all duration-300;
+    @apply bg-secondary hover:bg-secondary/80 text-secondary-foreground border border-border;
   }
 
   .btn-outline {
-    @apply border-2 border-[hsl(var(--brand-primary))]/30 text-[hsl(var(--brand-primary))] hover:bg-[hsl(var(--brand-primary))] hover:text-[hsl(var(--brand-primary-foreground))] shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105;
+    @apply border-[hsl(var(--brand-primary))] text-[hsl(var(--brand-primary))] hover:bg-[hsl(var(--brand-primary))] hover:text-[hsl(var(--brand-primary-foreground))];
   }
 
   .card-standard {
-    @apply bg-card/80 backdrop-blur-sm border-2 border-border/50 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1;
+    @apply bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200;
   }
 
   .header-standard {
-    @apply bg-[hsl(var(--brand-dark))]/95 backdrop-blur-xl text-white sticky top-0 z-50 shadow-2xl border-b-2 border-gray-700/50;
+    @apply bg-[hsl(var(--brand-dark))]/90 backdrop-blur-sm text-white sticky top-0 z-50 shadow-xl border-b-2 border-gray-700;
   }
 
   .section-standard {
-    @apply py-20 border-t-4 border-border/30;
+    @apply py-16 border-t-4 border-border;
   }
 
   .filter-section {
-    @apply bg-card/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 mb-8 border-2 border-border/50;
+    @apply bg-card/90 backdrop-blur-sm rounded-xl shadow-lg p-6 mb-8 border-2 border-border;
   }
 
   .brand-gradient {
@@ -154,35 +154,10 @@ All colors MUST be HSL.
   }
 
   .success-section {
-    @apply bg-gradient-to-r from-[hsl(var(--brand-success))]/10 to-[hsl(var(--brand-success))]/5 rounded-xl p-4 border-l-4 border-[hsl(var(--brand-success))];
+    @apply bg-[hsl(var(--brand-accent))]/10 rounded-lg p-3;
   }
 
   .contact-section {
-    @apply bg-muted/30 rounded-xl p-4 border border-border/30;
-  }
-
-  /* Enhanced animations */
-  @keyframes gentle-float {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  .float-animation {
-    animation: gentle-float 6s ease-in-out infinite;
-  }
-
-  /* Smooth scroll behavior */
-  html {
-    scroll-behavior: smooth;
-  }
-
-  /* Enhanced focus states */
-  *:focus-visible {
-    @apply outline-none ring-2 ring-[hsl(var(--brand-primary))]/30 ring-offset-2 ring-offset-background;
+    @apply bg-[hsl(var(--brand-accent))]/10 rounded-lg p-3;
   }
 }
-
